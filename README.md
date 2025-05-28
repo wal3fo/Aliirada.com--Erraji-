@@ -1,2 +1,0 @@
-# Aliirada.com (Erraji)
-
