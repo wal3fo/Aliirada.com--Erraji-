@@ -25,35 +25,32 @@
 </head>
 
 <body>
-    <div class="newsletter-banner">🔥 Flash Sale! Get 10% OFF – Only This Friday! ⏳✨</div>
-
     <livewire:layouts.header />
-
-    <section class="hero">
-        <span class="hero-subanner d-none">Women’s Clothes & Fashion</span>
-    </section>
-
     {{ $slot }}
 
     <footer class="footer">
         <div class="d-flex align-items-center justify-content-between">
-            <div class="newsletter">
-                <p>Sign up to our newsletter. Enjoy special offers, unique collabs, and exclusive events.</p>
-                <div class="newsletter-form">
-                    <input type="email" class="newsletter-input" placeholder="Your email address">
-                    <button type="submit" class="newsletter-submit"><span>SIGN UP</span></button>
-                </div>
-            </div>
-
             <div class="social-links">
                 <a class="link-emphasis" href="#" aria-label="Instagram">
                     <img src="{{ asset('assets/illustrations/instagram.svg') }}">
                     <span class="link-title">Join us on Instagram</span>
                 </a>
+                <a class="link-emphasis" href="#" aria-label="Instagram">
+                    <img src="{{ asset('assets/illustrations/facebook.svg') }}">
+                    <span class="link-title">Join us on Facebook</span>
+                </a>
                 <a class="link-emphasis" href="#" aria-label="Tiktok">
                     <img src="{{ asset('assets/illustrations/tiktok.svg') }}">
                     <span class="link-title">Join us on TikTok</span>
                 </a>
+            </div>
+
+            <div class="newsletter">
+                <p class="text-center">Sign up to our newsletter. Enjoy special offers.</p>
+                <div class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Your email address">
+                    <button type="submit" class="newsletter-submit"><span>SIGN UP</span></button>
+                </div>
             </div>
         </div>
 
