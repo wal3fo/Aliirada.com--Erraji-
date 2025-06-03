@@ -1,16 +1,17 @@
 <div>
+    <!-- Category Nav -->
     <nav class="categories d-flex align-items-center justify-content-start gap-2">
-        <a href="#">TOPS</a>
-        <a href="#">DRESSES</a>
-        <a href="#">PANTS</a>
-        <a href="#">SWIMWEAR</a>
+        @foreach ($Categories as $Index => $Category)
+        <a href="{{ route('products.details', ['Category' => $Category]) }}">{{ $Category }}</a>
+        @endforeach
     </nav>
 
+    <!-- Filter & Sort -->
     <div class="container-fluid filter-bar align-items-center justify-content-between overflow-hidden">
         <button class="filter-by-advanced tracking-wide">
             <i class="bi bi-filter"></i>
             <span class="filter-titulo">FILTER</span>
-            <small class="text-muted tracking-wide">(904 Items)</small>
+            <small class="text-muted tracking-wide">({{ $Products->total() }} Items)</small>
         </button>
         <button class="filter-by-popularity tracking-wide">
             <i class="bi bi-funnel"></i>
@@ -18,174 +19,37 @@
         </button>
     </div>
 
+    <!-- Product Grid -->
     <div class="product-grid">
-        <!-- Product 1 -->
+        @foreach ($Products as $Product)
         <div class="product-card">
             <div class="product-image">
-                <img src="https://www.na-kd.com/cdn-cgi/image/quality=80,sharpen=0.3,width=492/globalassets/round_neck_ribbed_top-1100-011193-0002_0031.jpg">
+                <img src="{{ $Product->Landing }}">
             </div>
             <div class="product-info">
-                <div class="product-name">Cotton Bandeau Ruched Midi Dress</div>
+                <div class="product-name">{{ $Product->Name }}</div>
                 <div class="d-flex align-items-center justify-content-between">
                     <div class="product-price">
-                        <span class="original-price">$49.95</span>
-                        <span class="discounted-price">$34.95</span>
+                        <span class="original-price">${{ $Product->PriceOf }}</span>
+                        <span class="discounted-price">${{ $Product->FinalOf }}</span>
                     </div>
-
                     <div class="product-wishlist"><i class="bi bi-heart"></i></div>
                 </div>
                 <div class="product-colors">3 Colors</div>
             </div>
         </div>
-
-        <!-- Product 2 -->
-        <div class="product-card">
-            <div class="product-image">
-                <img src="https://www.na-kd.com/cdn-cgi/image/quality=80,sharpen=0.3,width=648/globalassets/knitted_round_neck_frill_maxi_dress-1100-010913-0260_0082.jpg">
-            </div>
-            <div class="product-info">
-                <div class="product-name">Relaxed Cotton Shirt</div>
-
-                <div class="d-flex align-items-center justify-content-between">
-                    <div class="product-price">
-                        <span class="original-price">$39.95</span>
-                        <span class="discounted-price">$27.95</span>
-                    </div>
-
-                    <div class="product-wishlist"><i class="bi bi-heart"></i></div>
-                </div>
-                <div class="product-colors">7 Colors</div>
-            </div>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="product-card">
-            <div class="product-image">
-                <img src="https://www.na-kd.com/cdn-cgi/image/quality=80,sharpen=0.3,width=648/globalassets/linen_flowy_tie_back_mini_dress-1014-001508-0005_0002.jpg">
-            </div>
-            <div class="product-info">
-                <div class="product-name">Seersucker Long Sleeve Shirt</div>
-
-                <div class="d-flex align-items-center justify-content-between">
-                    <div class="product-price">
-                        <span class="original-price">$45.95</span>
-                        <span class="discounted-price">$36.75</span>
-                    </div>
-
-                    <div class="product-wishlist"><i class="bi bi-heart"></i></div>
-                </div>
-                <div class="product-colors">1 Color</div>
-            </div>
-        </div>
-
-        <!-- Product 4 -->
-        <div class="product-card">
-            <div class="product-image">
-                <img src="https://www.na-kd.com/cdn-cgi/image/quality=80,sharpen=0.3,width=492/globalassets/thin_basic_strap_singlet_1100-010035-036632704.jpg">
-            </div>
-            <div class="product-info">
-                <div class="product-name">Draped Cape Maxi Dress</div>
-
-                <div class="d-flex align-items-center justify-content-between">
-                    <div class="product-price">
-                        <span class="original-price">$45.95</span>
-                        <span class="discounted-price">$36.75</span>
-                    </div>
-
-                    <div class="product-wishlist">
-                        <i class="bi bi-heart"></i>
-                        <span class="product-titulo">Add to wishlist</span>
-                    </div>
-                </div>
-                <div class="product-colors">1 Color</div>
-            </div>
-        </div>
-
-        <!-- Product 5 -->
-        <div class="product-card">
-            <div class="product-image">
-                <img src="https://www.na-kd.com/cdn-cgi/image/quality=80,sharpen=0.3,width=492/globalassets/round_neck_cotton_t-shirt_1100-010027-013814766.jpg">
-            </div>
-            <div class="product-info">
-                <div class="product-name">Big Suede Tote Bag</div>
-
-                <div class="d-flex align-items-center justify-content-between">
-                    <div class="product-price">
-                        <span class="original-price">$45.95</span>
-                        <span class="discounted-price">$36.75</span>
-                    </div>
-
-                    <div class="product-wishlist"><i class="bi bi-heart"></i></div>
-                </div>
-                <div class="product-colors">1 Color</div>
-            </div>
-        </div>
-
-        <!-- Product 6 -->
-        <div class="product-card">
-            <div class="product-image">
-                <img src="https://www.na-kd.com/cdn-cgi/image/quality=80,sharpen=0.3,width=492/globalassets/thin_basic_strap_singlet-1100-010035-0005_25364-copy.jpg">
-            </div>
-            <div class="product-info">
-                <div class="product-name">Seersucker Mid Waist Pants</div>
-
-                <div class="d-flex align-items-center justify-content-between">
-                    <div class="product-price">
-                        <span class="original-price">$45.95</span>
-                        <span class="discounted-price">$36.75</span>
-                    </div>
-
-                    <div class="product-wishlist"><i class="bi bi-heart"></i></div>
-                </div>
-                <div class="product-colors">1 Color</div>
-            </div>
-        </div>
-
-        <!-- Product 7 -->
-        <div class="product-card">
-            <div class="product-image">
-                <img src="https://www.na-kd.com/cdn-cgi/image/quality=80,sharpen=0.3,width=492/globalassets/ribbed_short_sleeve_t-shirt-1100-011187-0018_0026_studio.jpg">
-            </div>
-            <div class="product-info">
-                <div class="product-name">Striped Elastic Waist Cotton Shorts</div>
-
-                <div class="d-flex align-items-center justify-content-between">
-                    <div class="product-price">
-                        <span class="original-price">$45.95</span>
-                        <span class="discounted-price">$36.75</span>
-                    </div>
-
-                    <div class="product-wishlist"><i class="bi bi-heart"></i></div>
-                </div>
-                <div class="product-colors">1 Color</div>
-            </div>
-        </div>
-
-        <!-- Product 8 -->
-        <div class="product-card">
-            <div class="product-image">
-                <img src="https://www.na-kd.com/cdn-cgi/image/quality=80,sharpen=0.3,width=846/globalassets/embroidered_ribbed_tank_1100-011226-9899_0111.jpg">
-            </div>
-            <div class="product-info">
-                <div class="product-name">Mini Suede Crossbody Tote</div>
-
-                <div class="d-flex align-items-center justify-content-between">
-                    <div class="product-price">
-                        <span class="original-price">$45.95</span>
-                        <span class="discounted-price">$36.75</span>
-                    </div>
-
-                    <div class="product-wishlist"><i class="bi bi-heart"></i></div>
-                </div>
-                <div class="product-colors">1 Color</div>
-            </div>
-        </div>
+        @endforeach
     </div>
 
-    <div class="load-more">
-        <button class="load-more-btn">LOAD MORE PRODUCTS</button>
-        <div class="product-count">
-            <span>36 of 421 products</span>
-        </div>
+    <!-- Load More Button -->
+    @if ($Products->hasMorePages())
+    <div class="load-more text-center">
+        <button wire:click="loadMore" class="load-more-btn">LOAD MORE PRODUCTS</button>
+    </div>
+    @endif
+
+    <!-- Product Count -->
+    <div class="product-count text-center text-muted">
+        <span>{{ $Products->count() }} of {{ $Products->total() }} Products</span>
     </div>
 </div>

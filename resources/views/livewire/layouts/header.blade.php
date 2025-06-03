@@ -8,8 +8,8 @@
         <div class="main-items">
             <a wire:navigate href="{{ route('products') }}">New In</a>
             <a wire:navigate href="{{ route('products') }}">Best Sellers</a>
-            <a wire:navigate href="{{ route('products') }}">CRAFTING</a>
-            <a wire:navigate href="#">MAGAZINE</a>
+            <a wire:navigate href="{{ route('products') }}">Accessories</a>
+            <a wire:navigate href="#">Magazine</a>
         </div>
 
         <div class="main-actions">
