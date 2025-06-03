@@ -33,9 +33,12 @@
                         <span class="original-price">${{ $Product->PriceOf }}</span>
                         <span class="discounted-price">${{ $Product->FinalOf }}</span>
                     </div>
+                    <div class="btn-addCard">
+                        <i class="bi bi-bag"></i>
+                        <span class="product-label">ADD TO CARD</span>
+                    </div>
                     <div class="product-wishlist"><i class="bi bi-heart"></i></div>
                 </div>
-                <div class="product-colors">3 Colors</div>
             </div>
         </div>
         @endforeach
@@ -44,12 +47,11 @@
     <!-- Load More Button -->
     @if ($Products->hasMorePages())
     <div class="load-more text-center">
-        <button wire:click="loadMore" class="load-more-btn">LOAD MORE PRODUCTS</button>
+        <button wire:click="loadMore" class="load-more-btn d-flex flex-column gap-2 mx-auto">
+            <span>
+                {{ $Products->count() }} of {{ $Products->total() }} Items
+            </span>
+        </button>
     </div>
     @endif
-
-    <!-- Product Count -->
-    <div class="product-count text-center text-muted">
-        <span>{{ $Products->count() }} of {{ $Products->total() }} Products</span>
-    </div>
 </div>

@@ -1,3 +1,7 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     margin: 0;
@@ -95,7 +99,9 @@ a {
     font-size: .75rem !important;
 }
 
-.main-nav a, .main-items a, .main-actions a {
+.main-nav a,
+.main-items a,
+.main-actions a {
     color: #000;
     text-decoration: none;
     position: relative;
@@ -124,11 +130,22 @@ a {
 
 /* Hero Section */
 .hero {
+    position: relative;
     height: 25rem;
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    background: url(../illustrations/campaign_fashion.webp) no-repeat center top;
+    overflow: hidden;
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
 }
 
 /* Shimmer effect */
@@ -230,6 +247,7 @@ a {
     border-radius: .35rem;
     padding: .65rem .5rem;
     color: #000000;
+
     border: 1px #000000 solid;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     position: relative;
@@ -258,8 +276,87 @@ a {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 }
 
+.landcontainer {
+    padding: 1.5rem;
+}
+
+.brand-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.brand-card:hover .brand-title {
+    opacity: 1;
+}
+
+.brand-title {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%, -10%);
+
+    z-index: 2;
+    cursor: default;
+
+    background: #fff;
+    padding: .25rem 1rem .25rem 1rem;
+    border-radius: .25rem;
+    text-align: center;
+    white-space: nowrap;
+
+    font-size: 1.65rem;
+    font-weight: 900;
+    letter-spacing: .2rem;
+    text-transform: uppercase;
+
+    transition: all .35s ease-in-out;
+}
+
 .brandlanding {
-    border-radius: .75rem;
+    height: 30rem;
+    overflow: hidden;
+    object-fit: cover;
+    border-radius: .5rem;
+}
+
+.brandlanding img {
+    transition: transform .3s ease;
+}
+
+.brandlanding img:hover {
+    cursor: pointer;
+    transform: scale(1.125);
+}
+
+.btn-addCard {
+    color: #fff;
+    width: auto;
+    display: flex;
+    cursor: pointer;
+    background: #000;
+    position: relative;
+    border-radius: .35rem;
+    padding: .25rem .5rem;
+    border: 1px #000 solid;
+    align-items: center;
+    transition: all .3s ease-in-out;
+}
+
+.btn-addCard .product-label {
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+.btn-addCard:hover .product-label {
+    opacity: 1;
+    width: auto;
+    margin-left: .5rem;
+    transition: all .3s ease-in-out;
 }
 
 /* Categories */
@@ -435,7 +532,7 @@ a {
     border-radius: .35rem;
     padding: .65rem .5rem;
     color: #ffffff;
-    border: 1px #ffffff solid;
+    border: none;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     position: relative;
     overflow: hidden;
@@ -604,6 +701,7 @@ a {
 .product-card {
     overflow: hidden;
     position: relative;
+    border-radius: .5rem;
 }
 
 .product-badge {
@@ -655,9 +753,8 @@ a {
 
 .product-image {
     width: 100%;
-    height: 30rem;
+    height: 25rem;
     overflow: hidden;
-    margin-bottom: .5rem;
     background-color: #f5f5f5;
 }
 
@@ -667,20 +764,27 @@ a {
     max-width: 100%;
     object-fit: cover;
     font-style: italic;
-    border-radius: .35rem;
     vertical-align: middle;
     transition: transform .3s ease;
 }
 
 .product-image img:hover {
     cursor: pointer;
-    border-radius: 0;
     transform: scale(1.125);
 }
 
 .product-info {
-    font-size: 12px;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    padding: .5rem;
+    border-top: none;
+    font-size: .85rem;
+    font-family: 'Poppins';
+
+    border-bottom-left-radius: .5rem;
+    border-bottom-right-radius: .5rem;
+
+    border-left: 1px #dddadc solid;
+    border-right: 1px #dddadc solid;
+    border-bottom: 1px #dddadc solid;
 }
 
 .product-name {
@@ -697,19 +801,19 @@ a {
 
 .original-price {
     color: #000000;
-    font-weight: bold;
     margin-right: .25rem;
     text-decoration: line-through;
 }
 
 .discounted-price {
+    font-weight: bolder;
     color: #c95000;
 }
 
 /* Load More */
 .load-more {
     text-align: center;
-    padding: .5rem 0;
+    padding-bottom: 2rem;
 }
 
 .product-count {
@@ -725,7 +829,7 @@ a {
 .newsletter-footer {
     display: flex;
     justify-content: space-between;
-    padding: 40px 30px;
+    padding: 2rem 1.5rem;
 }
 
 .link-emphasis {

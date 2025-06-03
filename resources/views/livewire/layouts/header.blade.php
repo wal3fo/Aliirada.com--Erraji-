@@ -1,6 +1,6 @@
 <div>
     <div class="newsletter-banner">🔥 Every FRIDAY (Jumma🌙) -10% ✨</div>
-    
+
     <nav class="main-nav">
         <div class="main-logo fs-4 fw-bolder cursor-default">
             <a wire:navigate href="{{ route('dashboard') }}" class="brandlogo">#LOGO HERE</a>
@@ -24,8 +24,12 @@
             </div>
         </div>
     </nav>
-    
+
     <section class="hero">
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="{{ asset('assets/illustrations/header.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
         <span class="hero-subanner d-none">Women’s Clothes & Fashion</span>
     </section>
 </div>
