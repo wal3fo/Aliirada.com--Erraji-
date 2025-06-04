@@ -13,8 +13,14 @@
         </div>
 
         <div class="main-actions">
-            <a href="#" class="btn main-action"><i class="bi bi-heart"></i></a>
-            <a href="#" class="btn main-action"><i class="bi bi-bag"></i></a>
+            <a href="#" class="btn main-action">
+                <i class="bi bi-suit-heart"></i>
+                <small class="badge bg-dark">0</small>
+            </a>
+            <a href="#" class="btn main-action">
+                <i class="bi bi-cart"></i>
+                <small class="badge bg-dark">{{ $CartCount }}</small>
+            </a>
 
             <div class="main-search ms-2">
                 <div class="newsletter-form input-group">

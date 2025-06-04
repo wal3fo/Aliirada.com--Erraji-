@@ -23,6 +23,16 @@ class Items extends Component
         $this->perPage += 4;
     }
 
+    public function addtocard($productId)
+    {
+        $product = NexaProducts::find($productId);
+
+        $cart = session()->get('CartItems', []);
+
+        $cart[$productId] = $product;
+        session()->put('CartItems', $cart);
+    }
+
     public function placeholder()
     {
         return view('components.layouts.placeholders');
@@ -31,7 +41,7 @@ class Items extends Component
     public function render()
     {
         $Products = NexaProducts::paginate($this->perPage);
-        
+
         $Categories = NexaCategories::whereIn('Id', $Products->pluck('Category')->unique())
             ->pluck('Name', 'Id');
 

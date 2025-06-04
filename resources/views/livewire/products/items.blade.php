@@ -33,7 +33,7 @@
                         <span class="original-price">${{ $Product->PriceOf }}</span>
                         <span class="discounted-price">${{ $Product->FinalOf }}</span>
                     </div>
-                    <div class="btn-addCard">
+                    <div class="btn-addCard" wire:click="addtocard({{ $Product->Id }})">
                         <i class="bi bi-bag"></i>
                         <span class="product-label">ADD TO CARD</span>
                     </div>
