@@ -1,12 +1,12 @@
 <div class="landcontainer">
     <div class="row align-items-center justify-content-between gy-4">
         <div class="col-12 col-md-4 col-lg-4">
-            <div class="brand-card">
+            <a href="{{ url('categories') }}/1-{{ Str::slug('Clothes') }}" class="brand-card text-dark">
                 <span class="brand-title">Skirts</span>
                 <div class="brandlanding">
                     <img src="{{ asset('assets/illustrations/Skirts_thumbnail.jpg') }}" width="100%">
                 </div>
-            </div>
+            </a>
         </div>
         <div class="col-12 col-md-4 col-lg-4">
             <div class="brand-card">

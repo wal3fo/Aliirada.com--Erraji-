@@ -2,17 +2,18 @@
 
 namespace App\Livewire\Products;
 
-use App\Models\NexaCategories;
-use App\Models\NexaProducts;
 use Livewire\Component;
 use Livewire\WithPagination;
-use Livewire\Attributes\Lazy;
 
-#[Lazy]
-class Items extends Component
+use App\Models\NexaProducts;
+use App\Models\NexaCategories;
+
+class Categories extends Component
 {
     use WithPagination;
 
+    public $categoryId;
+    public $categoryName;
     public $perPage = 4;
 
     protected $updatesQueryString = ['page'];
@@ -40,16 +41,17 @@ class Items extends Component
         return view('components.layouts.placeholders');
     }
 
+    public function mount($categoryId, $categoryName) {
+        $this->categoryId = $categoryId;
+        $this->categoryName = $categoryName;
+    }
+
     public function render()
     {
-        $Products = NexaProducts::paginate($this->perPage);
+        $Products = NexaProducts::where('Category', $this->categoryId)->paginate($this->perPage);
 
-        $Categories = NexaCategories::whereIn('Id', $Products->pluck('Category')->unique())
-            ->pluck('Name', 'Id');
-
-        return view('livewire.products.items', [
+        return view('livewire.products.categories', [
             'Products' => $Products,
-            'Categories' => $Categories,
         ]);
     }
 }

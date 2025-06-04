@@ -9,6 +9,13 @@ class Header extends Component
     public $CartItems = [];
     public $CartCount = 0;
 
+    protected $listeners = ['refreshHeader' => 'refreshHeader'];
+
+    public function refreshHeader() {
+        $this->CartItems = session()->get('CartItems', []);
+        $this->CartCount = count($this->CartItems);
+    }
+
     public function mount() {
         $this->CartItems = session()->get('CartItems', []);
         $this->CartCount = count($this->CartItems);

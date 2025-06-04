@@ -3,7 +3,7 @@
 
     <nav class="main-nav">
         <div class="main-logo fs-4 fw-bolder cursor-default">
-            <a wire:navigate href="{{ route('dashboard') }}" class="brandlogo">#LOGO HERE</a>
+            <a wire:navigate href="{{ route('home') }}" class="brandlogo">#LOGO HERE</a>
         </div>
         <div class="main-items">
             <a wire:navigate href="{{ route('products') }}">New In</a>
@@ -13,18 +13,19 @@
         </div>
 
         <div class="main-actions">
-            <a href="#" class="btn main-action">
+            <a wire:navigate href="#" class="btn main-action">
                 <i class="bi bi-suit-heart"></i>
                 <small class="badge bg-dark">0</small>
             </a>
-            <a href="#" class="btn main-action">
+
+            <a wire:navigate href="{{ route('carts') }}" class="btn main-action">
                 <i class="bi bi-cart"></i>
                 <small class="badge bg-dark">{{ $CartCount }}</small>
             </a>
 
             <div class="main-search ms-2">
                 <div class="newsletter-form input-group">
-                    <input type="email" class="newsletter-input" placeholder="Search">
+                    <input type="email" class="newsletter-input" placeholder="#TODO LIST">
                     <div class="input-group-text"><i class="bi bi-search"></i></div>
                 </div>
             </div>
