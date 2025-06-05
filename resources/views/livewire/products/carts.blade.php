@@ -28,12 +28,11 @@
             <div class="product-info">
                 <div class="product-name">{{ $Product->Name }}</div>
                 <div class="d-flex align-items-center justify-content-between">
-                    <div class="product-price m-0 d-flex gap-1">
+                    <div class="product-price m-0">
                         <span class="original-price">${{ $Product->PriceOf }}</span>
-                        <span class="discounted-price">${{ $Product->FinalOf }}</span>
                     </div>
-                    <div class="btn-addCard" wire:click="removeFromCart({{ $Product->Id }})" wire:loading.attr="disabled" wire:target="removeFromCart({{ $Product->Id }})">
-                        <span wire:loading.remove wire:target="removeFromCart({{ $Product->Id }})">Remove</span>
+                    <div class="btn-removeFromBag" wire:click="removeFromCart({{ $Product->Id }})" wire:loading.attr="disabled" wire:target="removeFromCart({{ $Product->Id }})">
+                        <span wire:loading.remove wire:target="removeFromCart({{ $Product->Id }})"><i class="bi bi-trash-fill"></i></span>
                         <span wire:loading wire:target="removeFromCart({{ $Product->Id }})">Removing...</span>
                     </div>
                 </div>

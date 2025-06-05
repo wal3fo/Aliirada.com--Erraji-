@@ -59,9 +59,7 @@
 
             <div class="footer-conditions">
                 <a class="footer-link-titulo" href="/en/terms-and-conditions">Terms &amp; Conditions</a>
-                <a class="footer-link-titulo" href="/en/term-and-conditions-social-competitions">Terms &amp; Conditions Social</a>
-                <a class="footer-link-titulo" href="/en/privacy-policy">Privacy Policy</a>
-                <a class="footer-link-titulo" href="/en/cookie-policy">Cookie Policy</a>
+                <a class="footer-link-titulo" href="/en/cookie-policy">Cookies Policy</a>
             </div>
         </div>
     </footer>

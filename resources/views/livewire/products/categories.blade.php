@@ -27,27 +27,27 @@
             </div>
             <div class="product-info">
                 <div class="product-name">{{ $Product->Name }}</div>
-                <div class="d-flex flex--column align-items-center justify-content-between">
-                    <div class="product-price m-0 d-flex gap-1">
-                        <span class="original-price">${{ $Product->PriceOf }}</span>
-                        <span class="discounted-price">${{ $Product->FinalOf }}</span>
+
+                <div class="d-flex flex-wrap justify-content-between">
+                    <div class="product-price justify-content-center m-0">
+                        <span class="original-price text-decoration-underline">${{ $Product->PriceOf }}</span>
                     </div>
 
-                    <div class="btn-addCard" wire:click="addToCart({{ $Product->Id }})" wire:loading.class="loading" wire:target="addToCart({{ $Product->Id }})">
-                        <span wire:loading.remove wire:target="addToCart({{ $Product->Id }})">ADD TO BAG</span>
-                        <span wire:loading wire:target="addToCart({{ $Product->Id }})">Adding...</span>
-                    </div>
+                    <div class="d-flex align-items-center justify-content-center gap-2">
+                        <div class="input-group-qua">
+                            <button class="btn-minus" wire:click="decrementQuantity({{ $Product->Id }})">-</button>
+                            <input type="number" class="form-control" value="1" readonly>
+                            <button class="btn-plus" wire:click="incrementQuantity({{ $Product->Id }})">+</button>
+                        </div>
 
-                    <div class="input-group justify-content-center d-none">
-                        <div class="input-group d-none w-50">
-                            <button class="btn-minus btn-addCard" wire:click="decrementQuantity({{ $Product->Id }})">-</button>
-                            <input type="text" class="form-control" value="1" readonly>
-                            <button class="btn-plus btn-addCard" wire:click="incrementQuantity({{ $Product->Id }})">+</button>
+                        <div class="btn-addToBag" wire:click="addToCart({{ $Product->Id }})" wire:loading.class="loading" wire:target="addToCart({{ $Product->Id }})">
+                            <span wire:loading.remove wire:target="addToCart({{ $Product->Id }})"><i class="bi bi-cart-fill"></i></span>
+                            <span wire:loading wire:target="addToCart({{ $Product->Id }})">Adding...</span>
                         </div>
                     </div>
-
-                    <div class="product-wishlist"><i class="bi bi-heart"></i></div>
                 </div>
+
+                <div class="product-wishlist"><i class="bi bi-heart"></i></div>
             </div>
         </div>
         @endforeach
