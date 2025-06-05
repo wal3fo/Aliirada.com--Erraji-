@@ -25,14 +25,13 @@ a {
 .newsletter-banner,
 .shopping-banner {
     cursor: default;
-    color: #ffffff;
-    font-weight: 600;
+    color: #000;
     padding: .35rem 0;
     font-size: .85rem;
     text-align: center;
     letter-spacing: .065em;
     font-family: 'Poppins';
-    background-color: #000000;
+    background-color: #FFD3D3;
 }
 
 .newsletter-banner a {

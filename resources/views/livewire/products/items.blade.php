@@ -5,24 +5,6 @@
         <a href="{{ route('products.details', ['Category' => $Category]) }}">{{ $Category }}</a>
         @endforeach
     </nav>
-    <div class="container-fluid filter-bar align-items-center justify-content-between overflow-hidden">
-        <span class="shopping-cart">
-            <span>My Cart</span>
-            <span>({{ $CartCount}})</span>
-        </span>
-        <span class="text-uppercase shopping-cart">
-            <span class="fw-bolder text-decoration-underline">TOTAL</span>
-            <span class="text-decoration--underline">${{ number_format(collect($CartItems)->sum('PriceOf'), 2, '.', ',') }}</span>
-        </span>
-
-        <button class="btn-addCard fw-bold tracking-wide" wire:click="checkout" wire:loading.attr="disabled" wire:target="checkout">
-            <span wire:loading.remove wire:target="checkout">
-                <span class="fs-6">💳</span>
-                Proceed to Checkout <u>#TODO LIST</u>
-            </span>
-            <span wire:loading wire:target="checkout">Checking out...</span>
-        </button>
-    </div>
 
     <!-- Filter & Sort -->
     <div class="container-fluid filter-bar align-items-center justify-content-between overflow-hidden">

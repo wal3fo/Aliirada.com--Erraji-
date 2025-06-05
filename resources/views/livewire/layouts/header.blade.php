@@ -1,5 +1,5 @@
 <div>
-    <div class="newsletter-banner">🔥 Every FRIDAY (Jumma🌙) -10% ✨</div>
+    <div class="newsletter-banner">Every FRIDAY (Jumma🌙) -10%</div>
 
     <nav class="main-nav">
         <div class="main-logo fs-4 fw-bolder cursor-default">
