@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ str_replace('_', '-', app()->getLocale()) === 'ar' ? 'rtl' : 'ltr' }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
+    dir="{{ str_replace('_', '-', app()->getLocale()) === 'ar' ? 'rtl' : 'ltr' }}">
 
 <head>
     <meta charset="utf-8">
@@ -16,8 +17,10 @@
     <link href="https://fonts.bunny.net/css?family=Poppins:400,500,600,700,800,900&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
+        rel="stylesheet">
 
     <!-- Trix Editor -->
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
@@ -28,41 +31,7 @@
     <livewire:layouts.header />
     {{ $slot }}
 
-    <footer class="footer">
-        <div class="d-flex align-items-center justify-content-between">
-            <div class="social-links">
-                <a class="link-emphasis" href="#" aria-label="Instagram">
-                    <img src="{{ asset('assets/illustrations/instagram.svg') }}">
-                    <span class="link-title">Join us on Instagram</span>
-                </a>
-                <a class="link-emphasis" href="#" aria-label="Instagram">
-                    <img src="{{ asset('assets/illustrations/facebook.svg') }}">
-                    <span class="link-title">Join us on Facebook</span>
-                </a>
-                <a class="link-emphasis" href="#" aria-label="Tiktok">
-                    <img src="{{ asset('assets/illustrations/tiktok.svg') }}">
-                    <span class="link-title">Join us on TikTok</span>
-                </a>
-            </div>
-
-            <div class="newsletter">
-                <p class="text-center">Sign up to our newsletter. Enjoy special offers.</p>
-                <div class="newsletter-form">
-                    <input type="email" class="newsletter-input" placeholder="Your email address">
-                    <button type="submit" class="newsletter-submit"><span>SIGN UP</span></button>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-copyright">
-            <span>© 2025 Company, Inc. All rights reserved.</span>
-
-            <div class="footer-conditions">
-                <a class="footer-link-titulo" href="/en/terms-and-conditions">Terms &amp; Conditions</a>
-                <a class="footer-link-titulo" href="/en/cookie-policy">Cookies Policy</a>
-            </div>
-        </div>
-    </footer>
+    <livewire:layouts.footer />
 
     <script type="text/javascript" src="{{ asset('assets/js/nexa.min.js') }}"></script>
 </body>

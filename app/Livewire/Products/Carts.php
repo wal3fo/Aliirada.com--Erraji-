@@ -13,7 +13,7 @@ class Carts extends Component
 
     public function mount() {
         $this->CartItems = session()->get('CartItems', []);
-        $this->CartCount = count($this->CartItems);
+        $this->CartCount = array_sum(array_column($this->CartItems, 'quantity'));
     }
 
     public function removeFromCart($productId)
@@ -31,7 +31,27 @@ class Carts extends Component
 
     public function refreshCart() {
         $this->CartItems = session()->get('CartItems', []);
-        $this->CartCount = count($this->CartItems);
+        $this->CartCount = array_sum(array_column($this->CartItems, 'quantity'));
+    }
+
+    public function incrementQuantity($productId)
+    {
+        $cart = session()->get('CartItems', []);
+        if (isset($cart[$productId])) {
+            $cart[$productId]['quantity']++;
+            session()->put('CartItems', $cart);
+            $this->refreshCart();
+        }
+    }
+
+    public function decrementQuantity($productId)
+    {
+        $cart = session()->get('CartItems', []);
+        if (isset($cart[$productId]) && $cart[$productId]['quantity'] > 1) {
+            $cart[$productId]['quantity']--;
+            session()->put('CartItems', $cart);
+            $this->refreshCart();
+        }
     }
 
     public function placeholder()

@@ -20,6 +20,7 @@ class NexaProducts extends Model
         'Category',
         'Quantity',
         'Landing',
+        'Popularity',
         'TimeOf',
     ];
 

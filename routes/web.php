@@ -13,8 +13,7 @@ Route::get('/', Dashboard::class)->name('home');
 
 Route::get('carts', Carts::class)->name('carts');
 Route::get('products', Items::class)->name('products');
-Route::get('products/details', Details::class)->name('products.details');
-
+Route::get('products/details/{productId}', Details::class)->name('products.details');
 Route::get('categories/{categoryId}-{categoryName}', Categories::class)->name('categories');
 
 Route::get('policies/sales', Sales::class)->name('policies.sales');

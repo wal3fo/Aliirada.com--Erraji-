@@ -14,7 +14,8 @@ class Categories extends Component
 
     public $categoryId;
     public $categoryName;
-    public $perPage = 4;
+    public $perPage = 8;
+    public $quantities = [];
 
     protected $updatesQueryString = ['page'];
 
@@ -27,10 +28,13 @@ class Categories extends Component
     public function addToCart($productId)
     {
         $product = NexaProducts::find($productId);
-
         $cart = session()->get('CartItems', []);
+        $quantity = $this->quantities[$productId] ?? 1;
 
-        $cart[$productId] = $product;
+        $cart[$productId] = [
+            'product' => $product,
+            'quantity' => $quantity,
+        ];
         session()->put('CartItems', $cart);
 
         $this->dispatch('refreshHeader');
@@ -46,9 +50,32 @@ class Categories extends Component
         $this->categoryName = $categoryName;
     }
 
+    public function incrementQuantity($productId)
+    {
+        if (isset($this->quantities[$productId])) {
+            $this->quantities[$productId]++;
+        } else {
+            $this->quantities[$productId] = 2;
+        }
+    }
+
+    public function decrementQuantity($productId)
+    {
+        if (isset($this->quantities[$productId]) && $this->quantities[$productId] > 1) {
+            $this->quantities[$productId]--;
+        }
+    }
+
     public function render()
     {
         $Products = NexaProducts::where('Category', $this->categoryId)->paginate($this->perPage);
+
+        // Initialize quantities for each product if not already set
+        foreach ($Products as $product) {
+            if (!isset($this->quantities[$product->Id])) {
+                $this->quantities[$product->Id] = 1;
+            }
+        }
 
         return view('livewire.products.categories', [
             'Products' => $Products,

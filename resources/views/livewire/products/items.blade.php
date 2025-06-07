@@ -20,7 +20,7 @@
     </div>
 
     <!-- Product Grid -->
-    <div class="product-grid">
+    <div class="main-container product-grid">
         @foreach ($Products as $Product)
         <div class="product-card">
             <div class="product-image">
@@ -31,13 +31,15 @@
 
                 <div class="d-flex flex-wrap justify-content-between">
                     <div class="product-price justify-content-center m-0">
-                        <span class="original-price text-decoration-underline">${{ $Product->PriceOf }}</span>
+                        <span class="original-price">
+                            {{ number_format($Product->PriceOf, 2, '.', ',') }} <span class="currency">MAD</span>
+                        </span>
                     </div>
 
                     <div class="d-flex align-items-center justify-content-center gap-2">
                         <div class="input-group-qua">
                             <button class="btn-minus" wire:click="decrementQuantity({{ $Product->Id }})">-</button>
-                            <input type="number" class="form-control" value="1" readonly>
+                            <input type="number" class="form-control" value="{{ $quantities[$Product->Id] ?? 1 }}" readonly>
                             <button class="btn-plus" wire:click="incrementQuantity({{ $Product->Id }})">+</button>
                         </div>
 

@@ -1,4 +1,4 @@
-<div class="landcontainer">
+<div class="main-container">
     <div class="row align-items-center justify-content-between gy-4">
         <div class="col-12 col-md-4 col-lg-4">
             <a href="{{ url('categories') }}/1-{{ Str::slug('Clothes') }}" class="brand-card text-dark">

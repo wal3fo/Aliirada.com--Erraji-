@@ -8,7 +8,7 @@
         <div class="main-items">
             <a wire:navigate href="{{ route('products') }}">New In</a>
             <a wire:navigate href="{{ route('products') }}">Best Sellers</a>
-            <a wire:navigate href="#">Categories</a>
+            <livewire:layouts.categories />
             <a wire:navigate href="#">Magazine</a>
         </div>
 

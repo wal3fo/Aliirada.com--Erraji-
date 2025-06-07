@@ -13,7 +13,8 @@ class Items extends Component
 {
     use WithPagination;
 
-    public $perPage = 4;
+    public $perPage = 8;
+    public $quantities = [];
 
     protected $updatesQueryString = ['page'];
 
@@ -23,13 +24,33 @@ class Items extends Component
         $this->perPage += 4;
     }
 
+    public function incrementQuantity($productId)
+    {
+        if (isset($this->quantities[$productId])) {
+            $this->quantities[$productId]++;
+        } else {
+            $this->quantities[$productId] = 2;
+        }
+    }
+
+    public function decrementQuantity($productId)
+    {
+        if (isset($this->quantities[$productId]) && $this->quantities[$productId] > 1) {
+            $this->quantities[$productId]--;
+        }
+    }
+
     public function addToCart($productId)
     {
         $product = NexaProducts::find($productId);
-
         $cart = session()->get('CartItems', []);
+        $quantity = $this->quantities[$productId] ?? 1;
 
-        $cart[$productId] = $product;
+        $cart[$productId] = [
+            'product' => $product,
+            'quantity' => $quantity,
+        ];
+        
         session()->put('CartItems', $cart);
 
         $this->dispatch('refreshHeader');
@@ -43,6 +64,13 @@ class Items extends Component
     public function render()
     {
         $Products = NexaProducts::paginate($this->perPage);
+
+        // Initialize quantities for each product if not already set
+        foreach ($Products as $product) {
+            if (!isset($this->quantities[$product->Id])) {
+                $this->quantities[$product->Id] = 1;
+            }
+        }
 
         $Categories = NexaCategories::whereIn('Id', $Products->pluck('Category')->unique())
             ->pluck('Name', 'Id');

@@ -11,6 +11,8 @@ html {
 
     --nexa-border-radius-sm: .25rem;
     --nexa-border-radius-lg: .45rem;
+
+    --nexa-footer-link-color: #FFFFFF;
 }
 
 body {
@@ -111,16 +113,19 @@ a {
 
 .main-nav a,
 .main-items a,
-.main-actions a {
-    color: var(--nexa-body-color);
-    text-decoration: none;
-    position: relative;
+.main-actions a,
+.main-items .nav-link {
+    cursor: pointer;
     overflow: hidden;
+    position: relative;
+    text-decoration: none;
     font-family: 'Poppins';
+    color: var(--nexa-body-color);
     transition: color .3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.main-items a::before {
+.main-items a::before,
+.main-items .nav-link::before {
     left: 0;
     bottom: 0;
     content: "";
@@ -133,7 +138,8 @@ a {
     transition: transform .4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.main-items a:hover::before {
+.main-items a:hover::before,
+.main-items .nav-link:hover::before {
     transform: scaleX(1);
 }
 
@@ -253,7 +259,7 @@ a {
     font-weight: 600;
     cursor: pointer;
     border-radius: var(--nexa-border-radius-sm);
-    padding: .65rem .5rem;
+    padding: .25rem .5rem;
     color: var(--nexa-body-color);
     background: var(--nexa-banner-bg);
     border: 1px #000000 solid;
@@ -283,8 +289,11 @@ a {
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 }
 
-.landcontainer {
+.main-container {
+    width: 100%;
     padding: 1.5rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .brand-card {
@@ -321,11 +330,9 @@ a {
 
 .input-group-qua input[type="number"] {
     border-radius: 0;
-    max-width: 2.75rem;
+    max-width: 3rem;
     border-left-width: 0;
     border-right-width: 0;
-    appearance: textfield;
-    -moz-appearance: textfield;
 }
 
 .input-group-qua input[type="number"]:hover,
@@ -425,6 +432,9 @@ a {
 }
 
 span {
+    font-size: .85rem;
+    font-weight: 400;
+    font-family: 'Poppins';
     letter-spacing: .065rem;
 }
 
@@ -483,12 +493,6 @@ span {
 .categories a:hover {
     color: #fff;
     background: var(--nexa-body-color);
-}
-
-.filter-bar {
-    padding: 1rem;
-    border-bottom: 1px solid #ddd;
-    font-size: 14px;
 }
 
 .filter-bar .icon-placeholder {
@@ -572,12 +576,11 @@ span {
 
 /* Newsletter Form */
 .newsletter {
-    text-align: start;
-    max-width: 30rem;
+    text-align: center;
 }
 
 .newsletter p {
-    font-size: .75rem;
+    font-size: 1rem;
     cursor: default;
     color: #ffffff;
     line-height: 1.85;
@@ -588,7 +591,6 @@ span {
 }
 
 .newsletter-form {
-    width: 20rem;
     display: flex;
     gap: .5rem;
     overflow: hidden;
@@ -621,7 +623,7 @@ span {
     border-radius: var(--nexa-border-radius-sm);
     padding: .65rem .5rem;
     color: #ffffff;
-    border: none;
+    border: 1px #ffffff solid;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     position: relative;
     overflow: hidden;
@@ -644,11 +646,17 @@ span {
 .newsletter-submit:hover::before,
 .newsletter-submit:focus::before,
 .newsletter-submit:hover {
+    border: 1px #000000 solid;
     color: var(--nexa-body-color);
+    border-radius: var(--nexa-border-radius-sm);
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
 }
 
 /* Footer */
+.footer-logo img {
+    width: 10rem;
+}
+
 .footer {
     gap: 2rem;
     display: flex;
@@ -664,6 +672,7 @@ span {
     cursor: default;
     font-size: .75rem;
     padding-top: 1rem;
+    align-items: center;
     font-family: 'Poppins';
     justify-content: space-between;
     border-top: 1px #222222 solid;
@@ -701,6 +710,7 @@ span {
 .social-links {
     gap: .75rem;
     display: flex;
+    align-items: end;
     font-size: .75rem;
     flex-direction: column;
     justify-content: center;
@@ -708,8 +718,8 @@ span {
 }
 
 .social-links a {
-    color: var(--nexa-body-color);
     text-decoration: none;
+    color: var(--nexa-footer-link-color);
 }
 
 .social-links a:hover {
@@ -767,7 +777,7 @@ span {
 .filter-bar {
     display: flex;
     overflow: hidden;
-    padding: .25rem 0;
+    border-bottom: 1px solid #ddd;
     justify-content: space-between;
     border-bottom: 1px solid #eeeeee;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -782,7 +792,6 @@ span {
 /* Product Grid */
 .product-grid {
     gap: 1rem;
-    padding: 2rem;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
 }
@@ -890,15 +899,20 @@ span {
 
 .original-price,
 .discounted-price {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     color: var(--nexa-body-color);
+    font-weight: 600;
+}
+
+.currency {
+    color: #a90505;
     font-weight: 600;
 }
 
 /* Load More */
 .load-more {
     text-align: center;
-    padding-bottom: 2rem;
+    padding-bottom: 1rem;
 }
 
 .product-count {
@@ -931,7 +945,7 @@ span {
 
 .link-emphasis img {
     border-radius: var(--nexa-border-radius-sm);
-    background-color: #000000;
+    background-color: #ffffff;
     transition: opacity .3s ease, visibility .3s ease, transform .3s ease, max-height .3s ease;
 }
 
@@ -1007,12 +1021,13 @@ span {
 
 .shopping-cart {
     cursor: default;
-    font-weight: 600;
-    font-size: 1.5rem;
-    margin-top: .5rem;
-    margin-bottom: .5rem;
+    font-size: .85rem;
+    margin-top: .25rem;
+    margin-bottom: .25rem;
     text-align: center;
     letter-spacing: .065rem;
+    font-family: 'Poppins';
+    text-transform: uppercase;
 }
 
 /* Product Options */
@@ -1596,6 +1611,15 @@ span {
     height: 8rem;
 }
 
+.wire-categories .dropdown-menu {
+    top: 2.25rem;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
 /* Responsive */
 @media (max-width: 992px) {
     .product-container {
@@ -1637,5 +1661,39 @@ span {
     .product-details-tabs {
         flex-wrap: wrap;
         gap: 1rem;
+    }
+}
+
+/* Policy Section Styles */
+.policy-section {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.policy-section:hover {
+    transform: translateX(8px);
+}
+
+.policy-section h2 {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.policy-section:hover h2 {
+    color: #1a1a1a;
+}
+
+.policy-section p {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 640px) {
+    .main-container {
+        padding: 1rem;
+    }
+    
+    .policy-section:hover {
+        transform: none;
     }
 }
