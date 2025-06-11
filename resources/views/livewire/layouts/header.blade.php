@@ -1,4 +1,4 @@
-<div>
+<div class="main-header">
     <div class="newsletter-banner">Every FRIDAY (Jumma🌙) -10%</div>
 
     <nav class="main-nav">
@@ -13,30 +13,28 @@
         </div>
 
         <div class="main-actions">
-            <a wire:navigate href="#" class="btn main-action">
-                <i class="bi bi-suit-heart"></i>
-                <small class="badge bg-dark">0</small>
-            </a>
-
-            <a wire:navigate href="{{ route('carts') }}" class="btn main-action">
-                <i class="bi bi-cart"></i>
-                <small class="badge bg-dark">{{ $CartCount }}</small>
-            </a>
-
-            <div class="main-search ms-2">
-                <div class="newsletter-form input-group">
-                    <input type="email" class="newsletter-input" placeholder="#TODO LIST">
-                    <div class="input-group-text"><i class="bi bi-search"></i></div>
-                </div>
+            <div class="main-search">
+                <input type="email" class="main-search-input" placeholder="Search">
             </div>
+
+            <a wire:navigate href="#" class="main-action">
+                <i class="bi bi-suit-heart"></i>
+            </a>
+
+            <a wire:navigate href="{{ route('carts') }}" class="main-action">
+                <i class="bi bi-cart"></i>
+                <small class="counts">{{ $CartCount }}</small>
+            </a>
         </div>
     </nav>
 
+    @if(request()->routeIs('home'))
     <section class="hero">
         <video autoplay muted loop playsinline class="hero-video">
             <source src="{{ asset('assets/illustrations/header.mp4') }}" type="video/mp4">
             Your browser does not support the video tag.
         </video>
-        <span class="hero-subanner d-none">Women’s Clothes & Fashion</span>
+        <span class="hero-subanner d-none">Women's Clothes & Fashion</span>
     </section>
+    @endif
 </div>

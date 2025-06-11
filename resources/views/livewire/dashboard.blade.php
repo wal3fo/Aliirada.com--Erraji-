@@ -1,52 +1,15 @@
-<div class="main-container">
-    <div class="row align-items-center justify-content-between gy-4">
-        <div class="col-12 col-md-4 col-lg-4">
-            <a href="{{ url('categories') }}/1-{{ Str::slug('Clothes') }}" class="brand-card text-dark">
-                <span class="brand-title">Skirts</span>
-                <div class="brandlanding">
-                    <img src="{{ asset('assets/illustrations/Skirts_thumbnail.jpg') }}" width="100%">
-                </div>
-            </a>
-        </div>
-        <div class="col-12 col-md-4 col-lg-4">
-            <div class="brand-card">
-                <span class="brand-title">Abayas</span>
-                <div class="brandlanding">
-                    <img src="{{ asset('assets/illustrations/Abaya_thumbnail.jpg') }}" width="100%">
-                </div>
+<div class="main-grid">
+    <div class="row align-items-center justify-content-between">
+        @foreach ($categories as $category)
+            <div class="col-12 col-md-4 col-lg-4">
+                <a href="{{ url('categories') }}/{{ $category->Id }}-{{ Str::slug($category->Name) }}"
+                    class="brand-card text-dark">
+                    <span class="brand-title">{{ $category->Name }}</span>
+                    <div class="brandlanding">
+                        <img src="{{ asset('assets/illustrations/categories') }}/{{ $category->Landing }}" width="100%">
+                    </div>
+                </a>
             </div>
-        </div>
-        <div class="col-12 col-md-4 col-lg-4">
-            <div class="brand-card">
-                <span class="brand-title">Satins</span>
-                <div class="brandlanding">
-                    <img src="{{ asset('assets/illustrations/Satin_thumbnail.jpg') }}" width="100%">
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-md-4 col-lg-4">
-            <div class="brand-card">
-                <span class="brand-title">Dresses</span>
-                <div class="brandlanding">
-                    <img src="{{ asset('assets/illustrations/Dresses_thumbnail.jpg') }}" width="100%">
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-md-4 col-lg-4">
-            <div class="brand-card">
-                <span class="brand-title">Sets</span>
-                <div class="brandlanding">
-                    <img src="{{ asset('assets/illustrations/Sets_thumbnail.jpg') }}" width="100%">
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-md-4 col-lg-4">
-            <div class="brand-card">
-                <span class="brand-title">Tunics</span>
-                <div class="brandlanding">
-                    <img src="{{ asset('assets/illustrations/Tunics_thumbnail.jpg') }}" width="100%">
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
 </div>

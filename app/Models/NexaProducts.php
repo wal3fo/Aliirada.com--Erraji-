@@ -32,4 +32,9 @@ class NexaProducts extends Model
     {
         return $this->belongsTo(NexaCategories::class, 'Category');
     }
+
+    public function pictures()
+    {
+        return $this->hasMany(NexaPictures::class, 'ProductId');
+    }
 }

@@ -2,11 +2,14 @@
 
 namespace App\Livewire\Products;
 
-use App\Models\NexaCategories;
-use App\Models\NexaProducts;
+use Str;
+
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\Lazy;
+
+use App\Models\NexaProducts;
+use App\Models\NexaCategories;
 
 #[Lazy]
 class Items extends Component
@@ -53,6 +56,20 @@ class Items extends Component
         
         session()->put('CartItems', $cart);
 
+        $this->dispatch('refreshHeader');
+    }
+
+    public function showProductDetails($productId)
+    {
+        $product = NexaProducts::find($productId);
+
+        if ($product) {
+            $this->redirectRoute('products.details', ['productId' => $product->Id, 'productName' => Str::slug($product->Name)]);
+        }
+    }
+
+    public function refreshCart()
+    {
         $this->dispatch('refreshHeader');
     }
 

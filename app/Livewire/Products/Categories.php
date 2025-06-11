@@ -2,11 +2,11 @@
 
 namespace App\Livewire\Products;
 
+use Str;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 use App\Models\NexaProducts;
-use App\Models\NexaCategories;
 
 class Categories extends Component
 {
@@ -45,7 +45,8 @@ class Categories extends Component
         return view('components.layouts.placeholders');
     }
 
-    public function mount($categoryId, $categoryName) {
+    public function mount($categoryId, $categoryName)
+    {
         $this->categoryId = $categoryId;
         $this->categoryName = $categoryName;
     }
@@ -64,6 +65,20 @@ class Categories extends Component
         if (isset($this->quantities[$productId]) && $this->quantities[$productId] > 1) {
             $this->quantities[$productId]--;
         }
+    }
+
+    public function showProductDetails($productId)
+    {
+        $product = NexaProducts::find($productId);
+
+        if ($product) {
+            $this->redirectRoute('products.details', ['productId' => $product->Id, 'productName' => Str::slug($product->Name)]);
+        }
+    }
+
+    public function refreshCart()
+    {
+        $this->dispatch('refreshHeader');
     }
 
     public function render()

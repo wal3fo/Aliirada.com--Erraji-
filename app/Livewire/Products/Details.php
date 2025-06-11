@@ -11,59 +11,16 @@ use App\Models\NexaProducts;
 class Details extends Component
 {
     public $product;
-    public $selectedVariant = null;
-    public $selectedSize = null;
+    public $productName;
     public $quantity = 1;
-    public $availableSizes = [];
 
-    public function mount($productId)
+    public function mount($productId, $productName)
     {
         $this->product = NexaProducts::find($productId);
+        $this->productName = $productName;
 
         if (!$this->product) {
             abort(404, 'Product not found');
-        }
-
-        //$this->initializeVariants();
-    }
-
-    protected function initializeVariants()
-    {
-        if ($this->product && $this->product->variants && $this->product->variants->count() > 0) {
-            // Set default variant (first available)
-            $this->selectedVariant = $this->product->variants->first();
-            $this->updateAvailableSizes();
-        }
-    }
-
-    public function selectVariant($variantId)
-    {
-        if (!$this->product || !$this->product->variants) {
-            return;
-        }
-
-        $this->selectedVariant = $this->product->variants->firstWhere('id', $variantId);
-        $this->selectedSize = null; // Reset size when variant changes
-        $this->updateAvailableSizes();
-    }
-
-    public function selectSize($sizeCode)
-    {
-        $this->selectedSize = $sizeCode;
-    }
-
-    public function updateAvailableSizes()
-    {
-        if ($this->selectedVariant && $this->selectedVariant->sizes) {
-            $this->availableSizes = $this->selectedVariant->sizes->map(function ($size) {
-                return [
-                    'code' => $size->code,
-                    'name' => $size->name,
-                    'in_stock' => $size->stock > 0
-                ];
-            })->toArray();
-        } else {
-            $this->availableSizes = [];
         }
     }
 
@@ -81,11 +38,6 @@ class Details extends Component
         }
     }
 
-    public function openSizeGuide()
-    {
-        $this->dispatch('open-size-guide');
-    }
-
     public function addToCart()
     {
         if (!$this->selectedVariant || !$this->selectedSize) {
@@ -93,13 +45,7 @@ class Details extends Component
             return;
         }
 
-        // Add to cart logic here
-        $this->dispatch('add-to-cart', [
-            'product_id' => $this->product->id,
-            'variant_id' => $this->selectedVariant->id,
-            'size' => $this->selectedSize,
-            'quantity' => $this->quantity
-        ]);
+        // Logic to add to cart
     }
 
     public function addToWishlist()
@@ -108,12 +54,11 @@ class Details extends Component
             $this->dispatch('show-error', 'Please select a color');
             return;
         }
+    }
 
-        // Add to wishlist logic here
-        $this->dispatch('add-to-wishlist', [
-            'product_id' => $this->product->id,
-            'variant_id' => $this->selectedVariant->id
-        ]);
+    public function refreshCart()
+    {
+        $this->dispatch('refreshHeader');
     }
 
     public function placeholder()

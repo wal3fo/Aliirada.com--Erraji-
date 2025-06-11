@@ -1,4 +1,4 @@
-<div class="position-relative wire-categories">
+<div class="wire-categories">
     <div class="nav-link" wire:navigate wire:click="toggleCategories" wire:click.away="hideCategories">Categories</div>
 
     <div class="dropdown-menu rounded-top-0 shadow-none overflow-hidden d-{{ $showCategories ? 'block' : 'none' }} position-absolute">

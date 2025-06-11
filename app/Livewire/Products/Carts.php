@@ -4,6 +4,8 @@ namespace App\Livewire\Products;
 
 use Livewire\Component;
 use Livewire\Attributes\Lazy;
+use App\Models\NexaProducts;
+use Illuminate\Support\Str;
 
 #[Lazy]
 class Carts extends Component
@@ -11,7 +13,8 @@ class Carts extends Component
     public $CartItems = [];
     public $CartCount = 0;
 
-    public function mount() {
+    public function mount()
+    {
         $this->CartItems = session()->get('CartItems', []);
         $this->CartCount = array_sum(array_column($this->CartItems, 'quantity'));
     }
@@ -26,12 +29,14 @@ class Carts extends Component
         }
 
         $this->refreshCart();
-        $this->dispatch('refreshHeader');
     }
 
-    public function refreshCart() {
+    public function refreshCart()
+    {
         $this->CartItems = session()->get('CartItems', []);
         $this->CartCount = array_sum(array_column($this->CartItems, 'quantity'));
+
+        $this->dispatch('refreshHeader');
     }
 
     public function incrementQuantity($productId)
@@ -40,6 +45,7 @@ class Carts extends Component
         if (isset($cart[$productId])) {
             $cart[$productId]['quantity']++;
             session()->put('CartItems', $cart);
+
             $this->refreshCart();
         }
     }
@@ -50,7 +56,17 @@ class Carts extends Component
         if (isset($cart[$productId]) && $cart[$productId]['quantity'] > 1) {
             $cart[$productId]['quantity']--;
             session()->put('CartItems', $cart);
+
             $this->refreshCart();
+        }
+    }
+
+    public function showProductDetails($productId)
+    {
+        $product = NexaProducts::find($productId);
+
+        if ($product) {
+            $this->redirectRoute('products.details', ['productId' => $product->Id, 'productName' => Str::slug($product->Name)]);
         }
     }
 

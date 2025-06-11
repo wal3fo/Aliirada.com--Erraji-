@@ -18,6 +18,7 @@ class NexaCategories extends Model
     protected $fillable = [
         'Name',
         'About',
+        'Landing',
         'Locked',
         'TimeOf',
     ];
