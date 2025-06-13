@@ -17,6 +17,7 @@ class NexaProducts extends Model
 
     protected $fillable = [
         'Name',
+        'Description',
         'Category',
         'Quantity',
         'Landing',

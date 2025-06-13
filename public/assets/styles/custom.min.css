@@ -82,6 +82,10 @@ span {
     padding: .5rem 1rem;
 }
 
+.main-items-mobile {
+    display: none;
+}
+
 .main-items {
     gap: 1.5rem;
     display: flex;
@@ -126,30 +130,87 @@ span {
     border-radius: .25rem;
 }
 
-.main-search {
-    width: 12rem;
-    overflow: hidden;
-    margin-right: .5rem;
+.main-actions .main-search {
+    width: 20rem;
+    position: relative;
     transition: all .3s ease-in-out;
 }
 
-.main-search:hover,
-.main-search:focus-within {
-    width: 14rem;
-}
-
-.main-search .main-search-input {
-    flex-grow: 1;
+.main-actions .main-search .main-search-input {
     width: 100%;
     font-size: .75rem;
     padding: .25rem 0;
     font-family: 'Poppins';
     border: none !important;
-    border-bottom: 1px #eeeeee solid !important;
+    border-bottom: 1px solid #dddddd !important;
 }
 
-.main-search .main-search-input:focus {
+.main-actions .main-search .main-search-input:focus {
     outline: none !important;
+}
+
+.main-actions .main-search .wire-searching {
+    position: relative;
+}
+
+.wire-searching .dropdown-menu {
+    width: 100%;
+    border-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    top: calc(100% + .8rem + 1px);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.wire-searching .search-result-item {
+    gap: .5rem;
+    display: flex;
+    align-items: center;
+    padding: .25rem .5rem;
+}
+
+.wire-searching .search-result-item:not(:last-child) {
+    border-bottom: 1px solid #dddddd;
+}
+
+.wire-searching .search-result-item:hover {
+    cursor: pointer;
+    background-color: #FBFBFB;
+}
+
+.wire-searching .search-result-item .result-image {
+    width: 3rem;
+    height: 3rem;
+    overflow: hidden;
+    border-radius: var(--nexa-border-radius-sm);
+}
+
+.wire-searching .search-result-item .result-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--nexa-border-radius-sm);
+}
+
+.wire-searching .search-result-item .result-info h6 {
+    cursor: pointer;
+    font-weight: 500;
+    max-width: 15rem;
+    overflow: hidden;
+    font-size: .85rem;
+    font-family: 'Poppins';
+    letter-spacing: .065rem;
+}
+
+.wire-searching .search-result-item .result-info .price {
+    cursor: pointer;
+    font-weight: 500;
+    font-size: .85rem;
+    font-family: 'Poppins';
+    letter-spacing: .065rem;
+    margin-top: auto;
+    color: var(--nexa-body-color);
 }
 
 .input-group-text .bi {
@@ -463,8 +524,8 @@ span {
     padding: .5rem 1.5rem;
     font-family: 'Poppins';
     justify-content: space-between;
-    border-top: 1px solid #eeeeee;
-    border-bottom: 1px solid #eeeeee;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
 }
 
 /* Brand Card */
@@ -475,26 +536,37 @@ span {
 
 .brand-card:hover .brand-title {
     opacity: 1;
+    cursor: pointer;
+    transform: translate(-50%, -50%) scale(1);
 }
 
 .brand-title {
-    position: absolute;
-    top: 10%;
+    top: 50%;
     left: 50%;
     opacity: 0;
-    transform: translate(-50%, -10%);
     z-index: 2;
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     cursor: default;
-    background: #fff;
-    padding: .25rem 1rem;
+    padding: 1rem;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #FFFFFF;
     text-align: center;
     white-space: nowrap;
-    font-size: 1.65rem;
-    font-weight: 900;
-    letter-spacing: .2rem;
+    letter-spacing: 0.1rem;
     text-transform: uppercase;
-    transition: all .35s ease-in-out;
+    text-decoration: underline;
+    background: rgba(0, 0, 0, .25);
+    transition: all .3s ease-in-out;
     border-radius: var(--nexa-border-radius-sm);
+    transform: translate(-50%, -50%) scale(.8);
 }
 
 .row {
@@ -527,7 +599,7 @@ span {
 
 .card {
     background-color: var(--nexa-card-bg);
-    border: 1px solid #eeeeee !important;
+    border: 1px solid #dddddd !important;
 }
 
 .brandlanding {
@@ -542,7 +614,7 @@ span {
 }
 
 .main-container .brandlanding {
-    border-radius: var(--nexa-border-radius-lg);
+    border-radius: var(--nexa-border-radius-sm);
 }
 
 .brandlanding img {
@@ -562,7 +634,7 @@ span {
     font-family: 'Poppins';
     justify-content: start;
     text-transform: uppercase;
-    border-bottom: 1px solid #eeeeee;
+    border-bottom: 1px solid #dddddd;
 }
 
 .categories a {
@@ -585,11 +657,10 @@ span {
     overflow: hidden;
     position: relative;
     align-items: center;
-    padding: .5rem 1.5rem;
+    padding: .5rem 1.5rem 0;
     font-family: 'Poppins';
     justify-content: space-between;
-    border-top: 1px solid #eeeeee;
-    border-bottom: 1px solid #eeeeee;
+    border-top: 1px solid #dddddd;
 }
 
 .filter-bar .icon-placeholder {
@@ -749,15 +820,20 @@ span {
     width: 10rem;
 }
 
+.copyright {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px #222222 solid;
+}
+
 .footer-copyright {
     display: flex;
     cursor: default;
     font-size: .75rem;
-    padding-top: 1rem;
-    align-items: center;
     font-family: 'Poppins';
-    justify-content: space-between;
-    border-top: 1px #222222 solid;
 }
 
 .footer-columns {
@@ -799,12 +875,16 @@ span {
     text-transform: uppercase;
 }
 
-.social-links a {
+.social-links .link-emphasis {
     display: flex;
     align-items: center;
     text-decoration: none;
     letter-spacing: .065rem;
     color: var(--nexa-footer-link-color);
+}
+
+.social-links .link-emphasis span {
+    font-size: 1rem;
 }
 
 .social-links a:hover {
@@ -816,9 +896,10 @@ span {
     transition: transform .5s ease-in-out;
 }
 
-.social-links a>img {
+.social-links .link-emphasis>img {
     background: #fff;
-    margin-left: .5rem;
+    padding: .25rem;
+    margin-left: .75rem;
     border-radius: var(--nexa-border-radius-lg);
     transition: opacity .3s ease, visibility .3s ease, transform .3s ease, max-height .3s ease;
 }
@@ -827,6 +908,7 @@ span {
     gap: .45rem;
     display: flex;
     font-size: .65rem;
+    justify-content: end;
 }
 
 .footer-conditions a {
@@ -857,10 +939,6 @@ span {
 .footer-links a {
     color: #999999;
     text-decoration: none;
-}
-
-.copyright {
-    margin-bottom: 15px;
 }
 
 .language-selector {
@@ -972,6 +1050,7 @@ span {
 }
 
 .product-actions {
+    gap: .5rem;
     display: flex;
     padding: .5rem;
     margin-top: auto;
@@ -1003,7 +1082,7 @@ span {
     font-size: .85rem;
     padding-bottom: .75rem;
     letter-spacing: .05em !important;
-    border-bottom: 1px solid #eeeeee;
+    border-bottom: 1px solid #dddddd;
 }
 
 /* Form Controls */
@@ -1135,7 +1214,7 @@ span {
     overflow: hidden;
     box-shadow: none;
     align-items: center;
-    border: 1px solid #eeeeee;
+    border: 1px solid #dddddd;
     border-radius: var(--nexa-border-radius-sm);
 }
 
@@ -1409,8 +1488,8 @@ span {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
     padding: 1.5rem 0;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
 }
 
 .benefit-item {
@@ -1479,7 +1558,7 @@ span {
 .tabs-header {
     display: flex;
     gap: 1rem;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #dddddd;
     margin-bottom: 1.5rem;
 }
 
@@ -1528,7 +1607,7 @@ span {
     display: flex;
     justify-content: space-between;
     padding: 0.5rem 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #dddddd;
 }
 
 .detail-label {
@@ -1581,7 +1660,7 @@ span {
 
 .review {
     padding: 1.5rem;
-    border: 1px solid #eee;
+    border: 1px solid #dddddd;
     border-radius: var(--nexa-border-radius-sm);
     margin-bottom: 1rem;
 }
@@ -1651,10 +1730,6 @@ span {
 @media (max-width: 768px) {
     .product-main-image {
         height: 400px;
-    }
-
-    .product-actions {
-        flex-direction: column;
     }
 
     .product-benefits {
@@ -1734,6 +1809,7 @@ span {
     position: fixed;
     overflow: hidden;
     padding: .5rem .5rem;
+    font-family: 'Poppins';
     transform: translateX(-50%);
     color: var(--nexa-body-color);
     border-bottom: none !important;
@@ -1747,4 +1823,116 @@ span {
     font-weight: 700;
     font-size: 1.25rem;
     color: var(--nexa-body-color);
+}
+
+
+/* === Custom Responsive Enhancements === */
+
+/* Navigation */
+@media (max-width: 640px) {
+    .main-nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .main-actions {
+        width: 100%;
+        gap: .75rem;
+    }
+
+    .social-links {
+        flex-direction: row;
+    }
+
+    .copyright {
+        gap: .75rem;
+    }
+
+    .footer-copyright {
+        align-items: center;
+        justify-content: center;
+    }
+
+    .footer-conditions {
+        justify-content: center;
+    }
+
+    .main-actions .main-search {
+        width: 100%;
+    }
+}
+
+/* Hero Section */
+@media (max-width: 768px) {
+    .hero {
+        height: 18rem;
+    }
+
+    .hero-subanner {
+        font-size: .85rem;
+        padding: .5rem 1rem;
+    }
+
+    .hero-name {
+        font-size: 1.25rem;
+    }
+}
+
+/* Product Card Titles */
+@media (max-width: 576px) {
+    .product-titulo {
+        display: block;
+        font-size: .85rem;
+        font-weight: 600;
+        margin-bottom: .25rem;
+    }
+}
+
+/* Footer Columns Stack */
+@media (max-width: 768px) {
+    .footer-columns {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+    .copyright {
+        gap: .75rem;
+    }
+
+    .footer-copyright {
+        align-items: center;
+        flex-direction: column;
+    }
+}
+
+/* Brand Card Responsiveness */
+@media (max-width: 768px) {
+    .brand-title {
+        font-size: 2rem;
+        padding: .5rem;
+    }
+
+    .main-items-mobile {
+        display: block;
+    }
+
+    .main-logo {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .main-items {
+        display: none;
+    }
+}
+
+/* Wire Search Dropdown Scroll */
+@media (max-width: 576px) {
+    .wire-searching .dropdown-menu {
+        width: 100%;
+        top: calc(100% - 10px);
+    }
 }

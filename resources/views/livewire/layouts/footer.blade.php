@@ -18,38 +18,36 @@
         </div>
 
         <div class="col-12 col-md-4">
-            <div class="social-links d-flex flex-wrap justify-content-center justify-content-md-start gap-3">
-                <a class="link-emphasis d-flex align-items-center" href="#" aria-label="Instagram">
-                    <span class="me-2">Instagram</span>
+            <div class="social-links">
+                <a class="link-emphasis" href="#" aria-label="Instagram">
+                    <span>Instagram</span>
                     <img src="{{ asset('assets/illustrations/svg/instagram.svg') }}" alt="Instagram">
-                </a>
-                <a class="link-emphasis d-flex align-items-center" href="#" aria-label="Facebook">
-                    <span class="me-2">Facebook</span>
-                    <img src="{{ asset('assets/illustrations/svg/facebook.svg') }}" alt="Facebook">
-                </a>
-                <a class="link-emphasis d-flex align-items-center" href="#" aria-label="Whatsapp">
-                    <span class="me-2">Whatsapp</span>
+                </a>    
+                <a class="link-emphasis" href="#" aria-label="Whatsapp">
+                    <span>Whatsapp</span>
                     <img src="{{ asset('assets/illustrations/svg/whatsapp.svg') }}" alt="Whatsapp">
                 </a>
-                <a class="link-emphasis d-flex align-items-center" href="#" aria-label="Tiktok">
-                    <span class="me-2">Tiktok</span>
+                <a class="link-emphasis" href="#" aria-label="Tiktok">
+                    <span>Tiktok</span>
                     <img src="{{ asset('assets/illustrations/svg/tiktok.svg') }}" alt="Tiktok">
                 </a>
             </div>
         </div>
     </div>
 
-    <div class="footer-copyright align-items-center justify-content-between">
+    <section class="copyright">
         <div class="col-12 col-md-6">
-            <span class="text-center text-md-start">© 2025 Company, Inc. All rights reserved.</span>
+            <div class="footer-copyright">
+                <span>© 2025 Company, Inc. All rights reserved.</span>
+            </div>
         </div>
 
         <div class="col-12 col-md-6">
-            <div class="footer-conditions justify-content-end gap-4">
+            <div class="footer-conditions gap-4">
                 <a wire:navigate href="{{ route('policies.sales') }}" class="footer-link-titulo">Terms &amp;
                     Conditions</a>
                 <a class="footer-link-titulo" href="#">Cookies Policy</a>
             </div>
         </div>
-    </div>
+    </section>
 </footer>

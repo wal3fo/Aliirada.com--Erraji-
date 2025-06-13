@@ -3,16 +3,15 @@
 namespace App\Livewire\Products;
 
 use Str;
-
 use Livewire\Component;
-use Livewire\WithPagination;
 use Livewire\Attributes\Lazy;
 
 use App\Models\NexaProducts;
+use Livewire\WithPagination;
 use App\Models\NexaCategories;
 
 #[Lazy]
-class Items extends Component
+class BestSellers extends Component
 {
     use WithPagination;
 
@@ -80,7 +79,8 @@ class Items extends Component
 
     public function render()
     {
-        $Products = NexaProducts::paginate($this->perPage);
+        // Get the best sellers products
+        $Products = NexaProducts::orderByDesc('Popularity')->paginate($this->perPage);
 
         // Initialize quantities for each product if not already set
         foreach ($Products as $product) {
@@ -92,7 +92,7 @@ class Items extends Component
         $Categories = NexaCategories::whereIn('Id', $Products->pluck('Category')->unique())
             ->pluck('Name', 'Id');
 
-        return view('livewire.products.items', [
+        return view('livewire.products.best-sellers', [
             'Products' => $Products,
             'Categories' => $Categories,
         ]);

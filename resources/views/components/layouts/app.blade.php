@@ -27,29 +27,13 @@
     <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
 </head>
 
-<body class="h-100">
+<body>
     <livewire:layouts.header />
     {{ $slot }}
 
     <livewire:layouts.footer />
 
     <livewire:layouts.finalize-orders />
-
-    <div class="modal d-none" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-dialog--centered" role="document">
-            <div class="modal-content modal-newsletter">
-                <div class="modal-header">
-                    <h5 class="modal-title">Congratulations</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body text-center cursor-default">Thanks! You are now subscribed to our newsletter!
-                </div>
-            </div>
-        </div>
-    </div>
-    <script type="text/javascript" src="{{ asset('assets/js/nexa.min.js') }}"></script>
 </body>
 
 </html>

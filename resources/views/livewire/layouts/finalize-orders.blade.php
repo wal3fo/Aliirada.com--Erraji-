@@ -1,10 +1,10 @@
 <div>
     @if(count($CartItems) > 0)
         <div class="finalize-order">
-            <div class="finalize-order-content d-flex flex-wrap gap-4">
+            <div class="d-flex align-items-center flex-wrap gap-2">
                 <div class="d-flex align-items-center gap-2">
-                    <span class="fw-bold">My Shopping Bag [{{ $CartCount }}]</span>
-                    <span class="original-price">
+                    <span class="text-uppercase fw-bold">My Shopping Bag <span class="currency">[{{ $CartCount }}]</span></span>
+                    <span class="original-price d-none">
                         <span class="fw-bold">
                             {{ $CartAmount }}
                             <span class="currency">MAD</span>
