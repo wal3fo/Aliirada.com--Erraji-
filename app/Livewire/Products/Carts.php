@@ -2,10 +2,12 @@
 
 namespace App\Livewire\Products;
 
+use Str;
 use Livewire\Component;
 use Livewire\Attributes\Lazy;
+
 use App\Models\NexaProducts;
-use Illuminate\Support\Str;
+use App\Models\NexaShippings;
 
 #[Lazy]
 class Carts extends Component
@@ -13,10 +15,34 @@ class Carts extends Component
     public $CartItems = [];
     public $CartCount = 0;
 
+    public $location = 'Marrakech';
+    public $shippingCost = 0;
+
+    protected $listeners = ['locationSelected' => 'updateLocation'];
+
     public function mount()
     {
         $this->CartItems = session()->get('CartItems', []);
         $this->CartCount = array_sum(array_column($this->CartItems, 'quantity'));
+        $this->location = session()->get('selectedLocation', 'Marrakech');
+        $this->currentLocation();
+    }
+
+    public function currentLocation()
+    {
+        $this->shippingCost = NexaShippings::where('City', $this->location)->first()->Cost;
+    }
+
+    public function updateLocation($city)
+    {
+        $this->location = $city;
+        session()->put('selectedLocation', $city);
+        $this->currentLocation();
+    }
+
+    public function changeLocation()
+    {
+        $this->dispatch('togglePopup');
     }
 
     public function removeFromCart($productId)

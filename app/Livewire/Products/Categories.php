@@ -5,9 +5,10 @@ namespace App\Livewire\Products;
 use Str;
 use Livewire\Component;
 use Livewire\WithPagination;
-
+use Livewire\Attributes\Lazy;
 use App\Models\NexaProducts;
 
+#[Lazy]
 class Categories extends Component
 {
     use WithPagination;
@@ -21,7 +22,6 @@ class Categories extends Component
 
     public function loadMore()
     {
-        $this->placeholder();
         $this->perPage += 4;
     }
 
@@ -38,11 +38,6 @@ class Categories extends Component
         session()->put('CartItems', $cart);
 
         $this->dispatch('refreshHeader');
-    }
-
-    public function placeholder()
-    {
-        return view('components.layouts.placeholders');
     }
 
     public function mount($categoryId, $categoryName)
@@ -79,6 +74,11 @@ class Categories extends Component
     public function refreshCart()
     {
         $this->dispatch('refreshHeader');
+    }
+
+    public function placeholder()
+    {
+        return view('components.layouts.placeholders');
     }
 
     public function render()

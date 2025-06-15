@@ -1,8 +1,8 @@
 <div>
     <!-- Category Nav -->
-    <nav class="categories d-none">
-        @foreach ($Categories as $Index => $Category)
-            <a href="#">{{ $Category }}</a>
+    <nav class="categories">
+        @foreach ($Categories as $item)
+            <a href="{{ route('categories', ['categoryId' => $item->Id, 'categoryName' => Str::slug($item->Name)]) }}">{{ $item->Name }}</a>
         @endforeach
     </nav>
 
@@ -23,16 +23,16 @@
         <!-- Product Grid -->
         <div class="row row-deck">
             @foreach ($Products as $Product)
-                <div class="col-12 col-md-6 col-lg-3">
+                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
                     <div class="card product-card">
                         <div class="product-image" wire:click="showProductDetails({{ $Product->Id }})">
-                            <img src="{{ $Product->Landing }}">
+                            <img src="{{ asset('assets/illustrations/products/' . $Product->Landing) }}">
                         </div>
                         <div class="product-info">
                             <div class="product-name" wire:click="showProductDetails({{ $Product->Id }})">
                                 {{ $Product->Name }}
                             </div>
-                            <div class="product-wishlist btn-addToWishlist"><i class="bi bi-heart-fill"></i></div>
+                            <div class="product-wishlist"><i class="bi bi-heart-fill"></i></div>
                         </div>
 
                         <div class="product-actions">

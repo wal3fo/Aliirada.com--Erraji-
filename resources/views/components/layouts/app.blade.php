@@ -12,28 +12,67 @@
 
     <!-- Critical CSS -->
     <link type="text/css" rel="stylesheet" href="{{ asset('assets/styles/custom.min.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/styles/fonts.css') }}">
 
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Poppins:400,500,600,700,800,900&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/bootstrap/bootstrap.min.css') }}">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
-        rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/bootstrap/bootstrap-icons.min.css') }}">
 
     <!-- Trix Editor -->
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
-    <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/trix/trix.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/tom-select/tom-select.min.css') }}">
+
+    @livewireStyles
 </head>
 
 <body>
     <livewire:layouts.header />
-    {{ $slot }}
+
+    <div class="wrapper">
+        {{ $slot }}
+    </div>
 
     <livewire:layouts.footer />
 
     <livewire:layouts.finalize-orders />
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="{{ asset('assets/vendor/jquery/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/vendor/trix/trix.umd.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/vendor/tom-select/tom-select.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/vendor/bootstrap/bootstrap.bundle.min.js') }}"></script>
+
+    @livewireScripts
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('[data-bs-toggle="tooltip"]').tooltip();
+
+            const initComponents = function () {
+                $('select').each(function () {
+                    if (!this.tomselect) {
+                        new TomSelect(this, {
+                            searchField: false,
+                            create: false,
+                            allowEmptyOption: true
+                        });
+                    }
+                });
+            };
+
+            $(document).on('livewire:navigated', function () {
+                setTimeout(initComponents, 5);
+            });
+
+            $(document).on('initComponents', function () {
+                setTimeout(initComponents, 5);
+            });
+
+            initComponents();
+        });
+    </script>
 </body>
 
 </html>

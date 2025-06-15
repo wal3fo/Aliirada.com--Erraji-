@@ -8,17 +8,22 @@ class Header extends Component
 {
     public $CartItems = [];
     public $CartCount = 0;
+    public $WishListItems = [];
+    public $WishListCount = 0;
 
-    protected $listeners = ['refreshHeader' => 'refreshHeader'];
+    protected $listeners = ['refreshHeader' => 'refreshCartHeader'];
 
-    public function refreshHeader() {
+    public function refreshCartHeader() {
         $this->CartItems = session()->get('CartItems', []);
-        $this->CartCount = count($this->CartItems);
+        $this->CartCount = array_sum(array_column($this->CartItems, 'quantity'));
     }
 
     public function mount() {
         $this->CartItems = session()->get('CartItems', []);
         $this->CartCount = array_sum(array_column($this->CartItems, 'quantity'));
+
+        $this->WishListItems = session()->get('WishListItems', []);
+        $this->WishListCount = count($this->WishListItems);
     }
 
     public function render()

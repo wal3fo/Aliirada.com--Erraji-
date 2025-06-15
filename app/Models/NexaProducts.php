@@ -20,6 +20,7 @@ class NexaProducts extends Model
         'Description',
         'Category',
         'Quantity',
+        'PriceOf',
         'Landing',
         'Popularity',
         'TimeOf',
@@ -37,5 +38,10 @@ class NexaProducts extends Model
     public function pictures()
     {
         return $this->hasMany(NexaPictures::class, 'ProductId');
+    }
+
+    public function sizes()
+    {
+        return $this->hasMany(NexaVariants::class, 'ProductId')->where('Type', 'Size');
     }
 }

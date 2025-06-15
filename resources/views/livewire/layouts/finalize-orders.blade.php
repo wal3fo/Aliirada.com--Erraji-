@@ -1,9 +1,14 @@
-<div>
+<div class="d-none">
     @if(count($CartItems) > 0)
         <div class="finalize-order">
-            <div class="d-flex align-items-center flex-wrap gap-2">
+            <div class="d-flex align-items-center gap-4">
+                <i class="bi bi-bag-check-fill fw-bold"></i>
+            </div>
+
+            <div class="d-flex align-items-center flex-wrap gap-2 d-none">
                 <div class="d-flex align-items-center gap-2">
-                    <span class="text-uppercase fw-bold">My Shopping Bag <span class="currency">[{{ $CartCount }}]</span></span>
+                    <span class="text-uppercase fw-bold">My Shopping Bag <span
+                            class="currency">[{{ $CartCount }}]</span></span>
                     <span class="original-price d-none">
                         <span class="fw-bold">
                             {{ $CartAmount }}
@@ -12,7 +17,8 @@
                     </span>
                 </div>
 
-                <a class="btn-checkout text-decoration-none" wire:click="checkout" wire:loading.attr="disabled" wire:target="checkout">
+                <button class="btn-checkout text-decoration-none d-none" wire:click="checkout" wire:loading.attr="disabled"
+                    wire:target="checkout">
                     <span wire:loading.remove="" wire:target="checkout">
                         Proceed to Checkout
                     </span>
@@ -20,7 +26,7 @@
                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                         Processing...
                     </span>
-                </a>
+                </button>
             </div>
         </div>
     @endif

@@ -2,57 +2,58 @@
 
 namespace App\Livewire\Products;
 
+use Exception;
 use Livewire\Component;
-use Livewire\Attributes\Lazy;
-
 use App\Models\NexaProducts;
 
-#[Lazy]
 class Details extends Component
 {
     public $product;
     public $productName;
-    public $quantity = 1;
+    public $quantities = [];
 
     public function mount($productId, $productName)
     {
-        $this->product = NexaProducts::find($productId);
+        $this->product = NexaProducts::with('pictures')->find($productId);
         $this->productName = $productName;
-
-        if (!$this->product) {
-            abort(404, 'Product not found');
-        }
-    }
-
-    public function incrementQuantity()
-    {
-        if ($this->quantity < 10) {
-            $this->quantity++;
-        }
-    }
-
-    public function decrementQuantity()
-    {
-        if ($this->quantity > 1) {
-            $this->quantity--;
-        }
     }
 
     public function addToCart()
     {
-        if (!$this->selectedVariant || !$this->selectedSize) {
-            $this->dispatch('show-error', 'Please select both color and size');
+        if (!$this->product) {
             return;
         }
 
-        // Logic to add to cart
+        try {
+            $cart = session()->get('CartItems', []);
+            $quantity = $this->quantities[$this->product->Id] ?? 1;
+
+            $cart[$this->product->Id] = [
+                'product' => $this->product,
+                'quantity' => $quantity,
+            ];
+
+            session()->put('CartItems', $cart);
+            $this->dispatch('refreshHeader');
+        } catch (Exception $e) {
+        }
     }
 
     public function addToWishlist()
     {
-        if (!$this->selectedVariant) {
-            $this->dispatch('show-error', 'Please select a color');
+        if (!$this->product) {
             return;
+        }
+
+        try {
+            $wishlist = session()->get('WishListItems', []);
+
+            $wishlist[$this->product->Id] = [
+                'product' => $this->product,
+            ];
+
+            session()->put('WishListItems', $wishlist);
+        } catch (Exception $e) {
         }
     }
 

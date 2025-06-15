@@ -19,7 +19,7 @@
                     <div class="col-lg-8">
                         <!-- Notice Box -->
                         <div class="border-start border-5 border-dark ps-4 mb-5">
-                            <p class="small text-muted mb-0">
+                            <p class="text-muted mb-0">
                                 These General Conditions of Sale apply to all purchases made through the ALIIRADA fashion website. 
                                 By placing an order, the customer fully agrees to these terms without reservation.
                             </p>
@@ -30,11 +30,11 @@
                             <!-- Products -->
                             <div class="mb-5">
                                 <div class="d-flex align-items-baseline mb-3">
-                                    <span class="text-muted small me-3">01</span>
-                                    <h2 class="h5 text-uppercase fw-light mb-0 cursor-default">Products</h2>
+                                    <span class="text-muted small me-3 fw-bolder">01</span>
+                                    <h2 class="h5 text-uppercase fw-medium mb-0 cursor-default">Products</h2>
                                 </div>
                                 <div class="ps-5">
-                                    <p class="small text-muted mb-0">
+                                    <p class="text-muted mb-0">
                                         All products displayed on the website are available for purchase at the time of ordering.<br>
                                         Please note that product images are for illustration purposes only and are non-contractual.
                                     </p>
@@ -44,11 +44,11 @@
                             <!-- Orders -->
                             <div class="mb-5">
                                 <div class="d-flex align-items-baseline mb-3">
-                                    <span class="text-muted small me-3">02</span>
-                                    <h2 class="h5 text-uppercase fw-light mb-0 cursor-default">Orders</h2>
+                                    <span class="text-muted small me-3 fw-bolder">02</span>
+                                    <h2 class="h5 text-uppercase fw-medium mb-0 cursor-default">Orders</h2>
                                 </div>
                                 <div class="ps-5">
-                                    <p class="small text-muted mb-0">
+                                    <p class="text-muted mb-0">
                                         Placing an order implies full acceptance of these terms and conditions.<br>
                                         A confirmation will be sent via email or WhatsApp. The sale is considered final from the moment of confirmation.
                                     </p>
@@ -58,11 +58,11 @@
                             <!-- Prices & Payment -->
                             <div class="mb-5">
                                 <div class="d-flex align-items-baseline mb-3">
-                                    <span class="text-muted small me-3">03</span>
-                                    <h2 class="h5 text-uppercase fw-light mb-0 cursor-default">Prices & Payment</h2>
+                                    <span class="text-muted small me-3 fw-bolder">03</span>
+                                    <h2 class="h5 text-uppercase fw-medium mb-0 cursor-default">Prices & Payment</h2>
                                 </div>
                                 <div class="ps-5">
-                                    <p class="small text-muted mb-0">
+                                    <p class="text-muted mb-0">
                                         Prices are listed in Moroccan Dirhams (MAD), inclusive of all applicable taxes.<br>
                                         Payment is accepted through available methods and orders are shipped upon payment confirmation.
                                     </p>
@@ -72,11 +72,11 @@
                             <!-- Delivery -->
                             <div class="mb-5">
                                 <div class="d-flex align-items-baseline mb-3">
-                                    <span class="text-muted small me-3">04</span>
-                                    <h2 class="h5 text-uppercase fw-light mb-0 cursor-default">Delivery</h2>
+                                    <span class="text-muted small me-3 fw-bolder">04</span>
+                                    <h2 class="h5 text-uppercase fw-medium mb-0 cursor-default">Delivery</h2>
                                 </div>
                                 <div class="ps-5">
-                                    <p class="small text-muted mb-0">
+                                    <p class="text-muted mb-0">
                                         Orders are delivered to the address provided by the customer.<br>
                                         Delivery times are indicative and not guaranteed. ALIIRADA is not liable for delays beyond its control.
                                     </p>
@@ -86,11 +86,11 @@
                             <!-- No Returns -->
                             <div class="mb-5">
                                 <div class="d-flex align-items-baseline mb-3">
-                                    <span class="text-muted small me-3">05</span>
-                                    <h2 class="h5 text-uppercase fw-light mb-0 cursor-default">No Returns or Exchanges</h2>
+                                    <span class="text-muted small me-3 fw-bolder">05</span>
+                                    <h2 class="h5 text-uppercase fw-medium mb-0 cursor-default">No Returns or Exchanges</h2>
                                 </div>
                                 <div class="ps-5">
-                                    <p class="small text-muted mb-0">
+                                    <p class="text-muted mb-0">
                                         All sales are final — no returns or exchanges will be accepted.<br>
                                         Please verify product details and sizes carefully before ordering.<br>
                                         If you receive a damaged or incorrect item, contact us within 48 hours with photo evidence.
@@ -101,11 +101,11 @@
                             <!-- Customer Support -->
                             <div class="mb-5">
                                 <div class="d-flex align-items-baseline mb-3">
-                                    <span class="text-muted small me-3">06</span>
-                                    <h2 class="h5 text-uppercase fw-light mb-0 cursor-default">Customer Support</h2>
+                                    <span class="text-muted small me-3 fw-bolder">06</span>
+                                    <h2 class="h5 text-uppercase fw-medium mb-0 cursor-default">Customer Support</h2>
                                 </div>
                                 <div class="ps-5">
-                                    <p class="small text-muted mb-0">
+                                    <p class="text-muted mb-0">
                                         For any inquiries, reach out via Instagram 
                                         <a href="https://www.instagram.com/aliirada" target="_blank" 
                                            class="text-dark text-decoration-none border-bottom border-dark">
@@ -119,11 +119,11 @@
                             <!-- Governing Law -->
                             <div class="mb-5">
                                 <div class="d-flex align-items-baseline mb-3">
-                                    <span class="text-muted small me-3">07</span>
-                                    <h2 class="h5 text-uppercase fw-light mb-0 cursor-default">Governing Law</h2>
+                                    <span class="text-muted small me-3 fw-bolder">07</span>
+                                    <h2 class="h5 text-uppercase fw-medium mb-0 cursor-default">Governing Law</h2>
                                 </div>
                                 <div class="ps-5">
-                                    <p class="small text-muted mb-0">
+                                    <p class="text-muted mb-0">
                                         These terms are governed by Moroccan law. Any disputes will be handled by the competent courts of Morocco.
                                     </p>
                                 </div>

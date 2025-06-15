@@ -4,10 +4,10 @@ namespace App\Livewire\Products;
 
 use Str;
 use Livewire\Component;
+use Livewire\WithPagination;
 use Livewire\Attributes\Lazy;
 
 use App\Models\NexaProducts;
-use Livewire\WithPagination;
 use App\Models\NexaCategories;
 
 #[Lazy]
@@ -63,7 +63,10 @@ class NewIn extends Component
         $product = NexaProducts::find($productId);
 
         if ($product) {
-            $this->redirectRoute('products.details', ['productId' => $product->Id, 'productName' => Str::slug($product->Name)]);
+            return $this->redirect(route('products.details', [
+                'productId' => $product->Id,
+                'productName' => Str::slug($product->Name)
+            ]), navigate: true);
         }
     }
 

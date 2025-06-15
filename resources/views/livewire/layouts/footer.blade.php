@@ -19,15 +19,15 @@
 
         <div class="col-12 col-md-4">
             <div class="social-links">
-                <a class="link-emphasis" href="#" aria-label="Instagram">
+                <a class="link-emphasis" href="https://www.instagram.com/aliirada_brand/" target="_blank" aria-label="Instagram">
                     <span>Instagram</span>
                     <img src="{{ asset('assets/illustrations/svg/instagram.svg') }}" alt="Instagram">
                 </a>    
-                <a class="link-emphasis" href="#" aria-label="Whatsapp">
+                <a class="link-emphasis" href="https://wa.me/6281234567890" target="_blank" aria-label="Whatsapp">
                     <span>Whatsapp</span>
                     <img src="{{ asset('assets/illustrations/svg/whatsapp.svg') }}" alt="Whatsapp">
                 </a>
-                <a class="link-emphasis" href="#" aria-label="Tiktok">
+                <a class="link-emphasis" href="https://www.tiktok.com/@chup.reda" target="_blank" aria-label="Tiktok">
                     <span>Tiktok</span>
                     <img src="{{ asset('assets/illustrations/svg/tiktok.svg') }}" alt="Tiktok">
                 </a>

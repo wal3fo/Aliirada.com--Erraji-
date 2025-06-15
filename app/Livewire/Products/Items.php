@@ -18,6 +18,7 @@ class Items extends Component
 
     public $perPage = 8;
     public $quantities = [];
+    public $categories;
 
     protected $updatesQueryString = ['page'];
 
@@ -90,7 +91,7 @@ class Items extends Component
         }
 
         $Categories = NexaCategories::whereIn('Id', $Products->pluck('Category')->unique())
-            ->pluck('Name', 'Id');
+            ->get();
 
         return view('livewire.products.items', [
             'Products' => $Products,
