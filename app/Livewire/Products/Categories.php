@@ -3,6 +3,7 @@
 namespace App\Livewire\Products;
 
 use Str;
+use Exception;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\Lazy;
@@ -16,58 +17,61 @@ class Categories extends Component
     public $categoryId;
     public $categoryName;
     public $perPage = 8;
-    public $quantities = [];
+    public $selectedSizes = [];
 
     protected $updatesQueryString = ['page'];
+
+    public function mount($categoryId, $categoryName)
+    {
+        $this->categoryId = $categoryId;
+        $this->categoryName = $categoryName;
+
+        sleep(1);
+    }
 
     public function loadMore()
     {
         $this->perPage += 4;
     }
 
+    public function selectSize($productId, $size)
+    {
+        $this->selectedSizes[$productId] = $size;
+    }
+
     public function addToCart($productId)
     {
         $product = NexaProducts::find($productId);
         $cart = session()->get('CartItems', []);
-        $quantity = $this->quantities[$productId] ?? 1;
+        $selectedSize = $this->selectedSizes[$productId] ?? null;
 
         $cart[$productId] = [
             'product' => $product,
-            'quantity' => $quantity,
+            'quantity' => 1,
+            'size' => $selectedSize,
         ];
+
         session()->put('CartItems', $cart);
 
         $this->dispatch('refreshHeader');
     }
 
-    public function mount($categoryId, $categoryName)
-    {
-        $this->categoryId = $categoryId;
-        $this->categoryName = $categoryName;
-    }
-
-    public function incrementQuantity($productId)
-    {
-        if (isset($this->quantities[$productId])) {
-            $this->quantities[$productId]++;
-        } else {
-            $this->quantities[$productId] = 2;
-        }
-    }
-
-    public function decrementQuantity($productId)
-    {
-        if (isset($this->quantities[$productId]) && $this->quantities[$productId] > 1) {
-            $this->quantities[$productId]--;
-        }
-    }
-
-    public function showProductDetails($productId)
+    public function addToWishlist($productId)
     {
         $product = NexaProducts::find($productId);
+        if (!$product) {
+            return;
+        }
 
-        if ($product) {
-            $this->redirectRoute('products.details', ['productId' => $product->Id, 'productName' => Str::slug($product->Name)]);
+        try {
+            $wishlist = session()->get('WishListItems', []);
+
+            $wishlist[$productId] = [
+                'product' => $product
+            ];
+
+            session()->put('WishListItems', $wishlist);
+        } catch (Exception $e) {
         }
     }
 
@@ -83,14 +87,7 @@ class Categories extends Component
 
     public function render()
     {
-        $Products = NexaProducts::where('Category', $this->categoryId)->paginate($this->perPage);
-
-        // Initialize quantities for each product if not already set
-        foreach ($Products as $product) {
-            if (!isset($this->quantities[$product->Id])) {
-                $this->quantities[$product->Id] = 1;
-            }
-        }
+        $Products = NexaProducts::orderByDesc('TimeOf')->where('Category', $this->categoryId)->paginate($this->perPage);
 
         return view('livewire.products.categories', [
             'Products' => $Products,

@@ -10,12 +10,15 @@ class Details extends Component
 {
     public $product;
     public $productName;
-    public $quantities = [];
+    public $Quantities = [];
+    public $selectedSize = null;
 
     public function mount($productId, $productName)
     {
         $this->product = NexaProducts::with('pictures')->find($productId);
         $this->productName = $productName;
+
+        sleep(1);
     }
 
     public function addToCart()
@@ -26,11 +29,12 @@ class Details extends Component
 
         try {
             $cart = session()->get('CartItems', []);
-            $quantity = $this->quantities[$this->product->Id] ?? 1;
+            $quantity = $this->Quantities[$this->product->Id] ?? 1;
 
             $cart[$this->product->Id] = [
                 'product' => $this->product,
                 'quantity' => $quantity,
+                'size' => $this->selectedSize,
             ];
 
             session()->put('CartItems', $cart);
@@ -50,11 +54,17 @@ class Details extends Component
 
             $wishlist[$this->product->Id] = [
                 'product' => $this->product,
+                'size' => $this->selectedSize,
             ];
 
             session()->put('WishListItems', $wishlist);
         } catch (Exception $e) {
         }
+    }
+
+    public function selectSize($size)
+    {
+        $this->selectedSize = $size;
     }
 
     public function refreshCart()

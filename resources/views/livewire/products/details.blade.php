@@ -23,7 +23,7 @@
             <div class="product-details">
                 <div class="product-header">
                     <div class="product-breadcrumb">
-                        <span>Home</span> / <span>Products</span> / <span>{{ $product->Name }}</span>
+                        <span>{{ __('messages.products.home') }}</span> / <span>{{ __('messages.products.products') }}</span> / <span>{{ $product->Name }}</span>
                     </div>
                     <h1 class="product-title">{{ $product->Name }}</h1>
 
@@ -46,7 +46,9 @@
                             <label class="option-label">Size</label>
                             <div class="size-grid">
                                 @foreach($product->sizes as $size)
-                                    <div class="size-option" data-size="{{ $size->Name }}">
+                                    <div class="size-option" {{ $selectedSize === $size->Name ? 'selected' : '' }}
+                                        wire:click="selectSize('{{ $size->Name }}')"
+                                        style="{{ $selectedSize === $size->Name ? 'background:#a90505;color:#fff;' : '' }}">
                                         <span>{{ $size->Name }}</span>
                                     </div>
                                 @endforeach
@@ -54,11 +56,11 @@
                         </div>
                     @endif
 
-                    <div class="product-actions">
+                    <div class=" product-actions">
                         <button class="bag-btn" wire:click="addToCart" wire:loading.class="loading"
                             wire:target="addToCart">
                             <span wire:loading.remove wire:target="addToCart">
-                                Add to Bag
+                                {{ __('messages.shopping.addtobag') }}
                             </span>
                             <span wire:loading wire:target="addToCart">
                                 <div class="spinner-border spinner-border-sm text-light">
@@ -70,7 +72,7 @@
                         <button class="wishlist-btn" wire:click="addToWishlist" wire:loading.class="loading"
                             wire:target="addToWishlist">
                             <span wire:loading.remove wire:target="addToWishlist">
-                                Add to Wishlist
+                                {{ __('messages.shopping.addtowishlist') }}
                             </span>
                             <span wire:loading wire:target="addToWishlist">
                                 <div class="spinner-border spinner-border-sm text-light">

@@ -29,7 +29,7 @@
                     </div>
                     <div class="category-content">
                         <h3 class="category-title">{{ $category->Name }}</h3>
-                        <div class="category-cta">Explore Collection</div>
+                        <div class="category-cta">{{ __('messages.dashboard.explorecollection') }}</div>
                     </div>
                     <div class="category-holographic"></div>
                 </a>

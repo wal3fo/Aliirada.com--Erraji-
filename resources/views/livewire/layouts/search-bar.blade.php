@@ -1,6 +1,6 @@
 <div class="wire-searching">
     <input type="text" wire:model.live.debounce.300ms="search" class="main-search-input"
-        placeholder="Search products...">
+        placeholder="{{ __('messages.header.search.placeholder') }}">
 
     <div class="dropdown-menu d-{{ $showResults ? 'block' : 'none' }}">
         @foreach($results as $product)

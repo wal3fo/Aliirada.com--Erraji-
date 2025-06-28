@@ -7,6 +7,10 @@
     --nexa-banner-color: #1A1A1A;
     --nexa-border-radius-sm: .25rem;
     --nexa-border-radius-lg: .45rem;
+    --nexa-border-radius-xl: .5rem;
+    --nexa-border-radius-2xl: .75rem;
+    --nexa-border-radius-3xl: 1rem;
+
     --nexa-footer-link-color: #FFFFFF;
     --scroll-duration: 2s;
 
@@ -48,7 +52,7 @@
     background: #fff !important;
     color: #303030 !important;
     font-family: inherit !important;
-    font-size: var(--text-xs) !important;
+    font-size: var(--text-sm) !important;
     cursor: text !important;
 }
 
@@ -86,10 +90,31 @@
     cursor: default !important;
 }
 
+label.required::after {
+    content: " *";
+    color: red;
+    font-weight: bold;
+    font-size: var(--text-sm);
+}
+
 /* Wire Click and Navigate Styles */
 [wire\:click],
 [wire\:navigate] {
     cursor: pointer;
+}
+
+[wire\:navigate] {
+    cursor: pointer;
+    text-transform: none;
+    text-decoration: none;
+    letter-spacing: .065rem;
+    color: var(--nexa-body-color);
+}
+
+[wire\:navigate]:not(.wirenone):hover,
+a[wire\:click]:not(.wirenone):hover {
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 /* Base Styles */
@@ -127,15 +152,6 @@ a {
     text-decoration: none;
 }
 
-.bi {
-    width: 1rem;
-    height: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: var(--text-sm);
-}
-
 /* Common Components */
 .badge {
     border-radius: var(--nexa-border-radius-sm) !important;
@@ -154,7 +170,7 @@ a {
     font-size: var(--text-sm);
     text-align: center;
     letter-spacing: .065em;
-    font-family: 'Poppins';
+    font-family: Muli, Arial, Helvetica, sans-serif;
     background-color: var(--nexa-banner-bg);
 }
 
@@ -167,13 +183,20 @@ a {
 .main-nav {
     gap: .5rem;
     display: flex;
-    padding: 0 1rem;
+    padding: 0 1rem 0 1rem;
     border-bottom: 1px solid #dddddd;
 }
 
 .main-logo {
     display: flex;
+    cursor: pointer;
     align-items: center;
+}
+
+.main-logo .brandlogo {
+    height: 2rem;
+    cursor: default;
+    margin: .35rem 0;
 }
 
 .main-logo img {
@@ -189,11 +212,10 @@ a {
     display: flex;
     padding: 0 .5rem;
     align-items: center;
-    font-family: 'Poppins';
     justify-content: start;
     letter-spacing: .065rem;
     font-size: var(--text-sm);
-    text-transform: uppercase;
+    font-family: Muli, Arial, Helvetica, sans-serif;
 }
 
 .main-items>a,
@@ -208,23 +230,21 @@ a {
 
 .main-items>a:hover {
     color: #ffffff;
+    text-decoration: none !important;
+    transition: all .1s ease !important;
     background-color: var(--nexa-body-color);
 }
 
 .main-actions {
     gap: .5rem;
     display: flex;
-    margin-left: auto;
     align-items: center;
-    justify-content: center;
+    justify-content: end;
 }
 
 .main-actions .main-action {
-    gap: .25rem;
-    display: flex;
     align-items: center;
-    padding: .5rem .5rem;
-    overflow: visible;
+    padding: .5rem .25rem;
 }
 
 .main-actions .main-action .bi {
@@ -254,12 +274,12 @@ a {
     width: 100%;
     height: 100%;
     padding: .25rem .5rem;
-    font-family: 'Poppins';
-    font-size: var(--text-xs);
+    font-size: var(--text-sm);
     border-top: none !important;
     border-bottom: none !important;
     border-left: 1px solid #dddddd !important;
     border-right: 1px solid #dddddd !important;
+    font-family: Muli, Arial, Helvetica, sans-serif;
 }
 
 .main-actions .main-search .main-search-input:focus {
@@ -317,7 +337,7 @@ a {
     max-width: 15rem;
     overflow: hidden;
     font-size: var(--text-sm);
-    font-family: 'Poppins';
+    font-family: Muli, Arial, Helvetica, sans-serif;
     letter-spacing: .065rem;
 }
 
@@ -325,10 +345,48 @@ a {
     cursor: pointer;
     font-weight: 500;
     font-size: var(--text-sm);
-    font-family: 'Poppins';
+    font-family: Muli, Arial, Helvetica, sans-serif;
     letter-spacing: .065rem;
     margin-top: auto;
     color: var(--nexa-body-color);
+}
+
+.main-actions .main-languages {
+    width: auto;
+    height: 100%;
+    position: relative;
+    transition: all .3s ease-in-out;
+}
+
+.main-actions .main-languages button {
+    width: 100%;
+    height: 100%;
+    padding: .25rem .5rem;
+    font-size: var(--text-sm);
+    font-weight: 600 !important;
+    border-radius: 0 !important;
+    font-family: Muli, Arial, Helvetica, sans-serif;
+}
+
+.main-actions .main-languages button:hover {
+    color: var(--nexa-body-color) !important;
+    background: var(--nexa-body-bg) !important;
+}
+
+.main-actions .main-languages .wire-languages {
+    height: 100%;
+    position: relative;
+}
+
+.wire-languages .dropdown-menu {
+    width: auto;
+    border-top: 0;
+    padding-top: 0;
+    overflow: hidden;
+    padding-bottom: 0;
+    top: 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
 .input-group-text .bi {
@@ -359,10 +417,11 @@ a {
 .main-items .nav-link {
     cursor: pointer;
     overflow: hidden;
+    font-size: .85rem;
     position: relative;
     text-decoration: none;
-    font-family: 'Poppins';
     color: var(--nexa-body-color);
+    font-family: Muli, Arial, Helvetica, sans-serif;
     transition: color .3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -526,19 +585,40 @@ a {
 .btn-addToWishlist,
 .btn-removeFromBag,
 .btn-removeFromWishlist {
-    gap: .125rem;
-    width: 2rem;
-    height: 2rem;
-    display: flex;
-    font-size: var(--text-md);
-    padding: .45rem;
+    width: 100%;
     cursor: pointer;
     font-weight: 500;
     position: relative;
-    align-items: center;
+    padding: .2rem .5rem;
+    font-size: var(--text-md);
     border: 1px #1A1A1A solid;
     transition: all .3s ease-in-out;
     border-radius: var(--nexa-border-radius-sm);
+}
+
+.btn-addToBag,
+.btn-removeFromBag,
+.btn-addToWishlist,
+.btn-removeFromWishlist {
+    color: #fff;
+    background-color: var(--nexa-body-color);
+}
+
+.btn-addToBag:hover,
+.btn-removeFromBag:hover,
+.btn-addToWishlist:hover,
+.btn-removeFromWishlist:hover {
+    color: #fff;
+    border: 1px #a90505 solid;
+    background-color: #a90505;
+}
+
+.btn-addToBag .bi,
+.btn-addToWishlist .bi,
+.btn-removeFromBag .bi,
+.btn-removeFromWishlist .bi,
+.btn-removeFromWishlist .bi {
+    font-size: var(--text-md);
 }
 
 .btn-checkout {
@@ -564,7 +644,7 @@ a {
 .shipping-location {
     cursor: pointer;
     font-size: var(--text-xs);
-    font-family: 'Poppins';
+    font-family: Muli, Arial, Helvetica, sans-serif;
     letter-spacing: .065rem;
     text-transform: capitalize;
 }
@@ -574,39 +654,6 @@ a {
     align-items: center;
     justify-content: center;
     vertical-align: middle !important;
-}
-
-.btn-addToBag {
-    color: #fff;
-    background-color: var(--nexa-body-color);
-}
-
-.btn-removeFromBag {
-    color: #fff;
-    background-color: var(--nexa-body-color);
-}
-
-.btn-addToWishlist {
-    border: none;
-    font-size: var(--text-xl);
-    background-color: transparent;
-}
-
-.btn-removeFromWishlist {
-    color: #fff;
-    background-color: var(--nexa-body-color);
-}
-
-.btn-addToWishlist:hover,
-.btn-removeFromWishlist:hover {
-    color: #ce1e1e;
-}
-
-.btn-addToBag:hover,
-.btn-removeFromBag:hover {
-    color: #fff;
-    border: 1px #a90505 solid;
-    background-color: #a90505;
 }
 
 .btn-addToBag .product-label {
@@ -645,13 +692,13 @@ a {
 
 .main-container-header {
     display: flex;
-    font-size: var(--text-md);
     overflow: hidden;
     position: relative;
     align-items: center;
     padding: .5rem 1.5rem;
-    font-family: 'Poppins';
-    justify-content: space-between;
+    font-family: Muli, Arial, Helvetica, sans-serif;
+    justify-content: center;
+    font-size: var(--text-md);
     border-bottom: 1px solid #dddddd;
 }
 
@@ -700,11 +747,11 @@ a {
 }
 
 .row>* {
-    flex-shrink: 0;
     width: 100%;
+    flex-shrink: 0;
     max-width: 100%;
-    --bs-gutter-x: 1rem !important;
-    --bs-gutter-y: 1rem !important;
+    --bs-gutter-x: 1.25rem !important;
+    --bs-gutter-y: 1.25rem !important;
 }
 
 .row-deck>.col,
@@ -724,6 +771,17 @@ a {
 }
 
 .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-actions {
+    margin: -.5rem 0rem -.5rem auto;
+    padding-left: .5rem;
+}
+
+.card-header {
     background-color: var(--nexa-card-bg) !important;
     border-bottom: 1px solid #dddddd !important;
 }
@@ -734,13 +792,7 @@ a {
 
 .card>*,
 .card>*>* {
-    font-family: 'Poppins';
-}
-
-.card a {
-    text-transform: uppercase;
-    letter-spacing: .065rem;
-    color: var(--nexa-body-color);
+    font-family: Muli, Arial, Helvetica, sans-serif;
 }
 
 .main-login .card-header {
@@ -760,7 +812,7 @@ a {
     width: 100%;
     font-size: var(--text-xs);
     padding: 1rem 0;
-    font-family: 'Poppins';
+    font-family: Muli, Arial, Helvetica, sans-serif;
     border: none !important;
     border-bottom: 1px solid #dddddd !important;
 }
@@ -797,9 +849,9 @@ a {
 .categories {
     gap: .25rem;
     display: flex;
-    padding: .25rem 1rem;
+    padding: .25rem 1.5rem;
     font-size: var(--text-xxs);
-    font-family: 'Poppins';
+    font-family: Muli, Arial, Helvetica, sans-serif;
     justify-content: start;
     text-transform: uppercase;
     border-bottom: 1px solid #dddddd;
@@ -825,7 +877,7 @@ a {
     position: relative;
     align-items: center;
     padding: .5rem 1.5rem;
-    font-family: 'Poppins';
+    font-family: Muli, Arial, Helvetica, sans-serif;
     justify-content: space-between;
     border-bottom: 1px solid #dddddd;
 }
@@ -848,7 +900,7 @@ a {
     cursor: default;
     font-size: var(--text-lg);
     font-weight: 500;
-    font-family: 'Poppins';
+    font-family: Muli, Arial, Helvetica, sans-serif;
     letter-spacing: .065rem;
     justify-content: center;
     text-transform: capitalize;
@@ -907,7 +959,7 @@ a {
     margin-bottom: 1rem;
     letter-spacing: .05rem;
     text-transform: uppercase;
-    font-family: 'Poppins';
+    font-family: Muli, Arial, Helvetica, sans-serif;
 }
 
 .newsletter-form {
@@ -978,7 +1030,7 @@ a {
     display: flex;
     color: #FFFFFF;
     padding: 2rem 1rem 1rem;
-    font-family: 'Poppins';
+    font-family: Muli, Arial, Helvetica, sans-serif;
     flex-direction: column;
     background-color: #1A1A1A;
     flex-shrink: 0;
@@ -1001,7 +1053,7 @@ a {
     display: flex;
     cursor: default;
     font-size: var(--text-xs);
-    font-family: 'Poppins';
+    font-family: Muli, Arial, Helvetica, sans-serif;
 }
 
 .footer-columns {
@@ -1044,6 +1096,7 @@ a {
 }
 
 .social-links .link-emphasis {
+    gap: .5rem;
     display: flex;
     align-items: center;
     text-decoration: none;
@@ -1056,18 +1109,17 @@ a {
 }
 
 .social-links a:hover {
-    text-decoration: underline;
+    /* text-decoration: underline; */
 }
 
 .social-links a:hover>img {
-    transform: rotate(360deg);
-    transition: transform .5s ease-in-out;
+    transform: rotate(45deg);
+    transition: transform .3s ease-in-out;
 }
 
 .social-links .link-emphasis>img {
-    background: #fff;
-    padding: .25rem;
-    margin-left: .75rem;
+    /* background: #fff;
+    padding: .25rem; */
     border-radius: var(--nexa-border-radius-lg);
     transition: opacity .3s ease, visibility .3s ease, transform .3s ease, max-height .3s ease;
 }
@@ -1083,7 +1135,7 @@ a {
     color: #ffffff;
     font-size: var(--text-xs);
     text-decoration: none;
-    font-family: 'Poppins';
+    font-family: Muli, Arial, Helvetica, sans-serif;
 }
 
 .footer-conditions a:hover {
@@ -1138,7 +1190,7 @@ a {
     font-weight: 500;
     font-size: var(--text-xs);
     border-radius: var(--nexa-border-radius-sm);
-    font-family: 'Poppins';
+    font-family: Muli, Arial, Helvetica, sans-serif;
     background-color: #1A1A1A;
 }
 
@@ -1151,27 +1203,30 @@ a {
     top: 0;
     right: 0;
     opacity: 0;
-    padding: .5rem;
+    padding: .25rem .5rem;
     cursor: pointer;
     font-weight: 500;
     position: absolute;
     visibility: hidden;
-    font-family: 'Poppins';
+    font-family: Muli, Arial, Helvetica, sans-serif;
+    color: var(--nexa-body-bg);
     letter-spacing: .065rem;
-    font-size: var(--text-3xl);
+    font-size: var(--text-lg);
     transition: all.35s ease-in-out;
-    background-color: var(--nexa-banner-bg);
-    border-top-right-radius: var(--nexa-border-radius-sm);
-    border-bottom-left-radius: var(--nexa-border-radius-sm);
+    background-color: #1a1a1a79;
+    border-left: 1px solid var(--nexa-body-bg);
+    border-bottom: 1px solid var(--nexa-body-bg);
+    border-bottom-left-radius: var(--nexa-border-radius-xl);
 }
 
 .product-card:hover .product-wishlist {
-    opacity: 1;
-    visibility: visible;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
-.product-wishlist:hover {
-    color: #ce1e1e !important;
+.product-card:hover .product-wishlist:hover {
+    background-color: #FFFFFF;
+    color: #a90505 !important;
 }
 
 .product-image {
@@ -1199,10 +1254,10 @@ a {
 .product-info {
     gap: .5rem;
     display: flex;
-    padding: .5rem;
+    padding: .5rem .5rem 0;
     border-top: none;
     font-size: var(--text-sm);
-    font-family: 'Poppins';
+    font-family: Muli, Arial, Helvetica, sans-serif;
     flex-direction: column;
     justify-content: space-between;
 }
@@ -1212,7 +1267,7 @@ a {
     font-weight: 500;
     font-size: var(--text-sm);
     letter-spacing: .05em;
-    font-family: 'Poppins';
+    font-family: Muli, Arial, Helvetica, sans-serif;
 }
 
 .product-actions {
@@ -1267,7 +1322,7 @@ a {
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(2px);
-    z-index: 1050;
+    z-index: 1060;
 }
 
 .location-popup-search {
@@ -1276,6 +1331,7 @@ a {
 
 .location-popup-search input {
     border: none !important;
+    font-size: 1rem !important;
     box-shadow: none !important;
     border-bottom: 1px solid #dddddd !important;
 }
@@ -1292,6 +1348,7 @@ a {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     padding: 1.5rem;
     width: 90%;
+    height: 90vh;
     max-width: 800px;
     max-height: 90vh;
     display: flex;
@@ -1347,6 +1404,54 @@ a {
     text-align: right;
 }
 
+/* === Checkout Popup Styles (duplicated from location) === */
+.checkout-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1050;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkout-popup-container {
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    padding: 1.5rem;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout-popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.checkout-popup-header h5 {
+    margin-bottom: 0;
+    font-weight: bold;
+    font-size: var(--text-lg);
+}
+
+.checkout-popup-content {
+    overflow-y: auto;
+    flex-grow: 1;
+    padding-right: 0.5rem;
+    min-height: 100px;
+}
+
+/* === End Checkout Popup Styles === */
+
 /* Animations */
 @keyframes shimmer {
     0% {
@@ -1362,12 +1467,25 @@ a {
     }
 }
 
+.input-group {
+    flex-wrap: nowrap !important;
+}
+
+.select-size {
+    font-weight: 600;
+    text-align: center;
+    font-size: 1.25rem !important;
+    padding: 0 .75rem 0 !important;
+    background-image: none !important;
+    border-color: #1A1A1A !important;
+}
+
 /* Quantity Input Group */
 .input-group-qua {
     gap: 0;
+    width: max-content;
     height: 2rem;
     display: flex;
-    max-width: 10rem;
     overflow: hidden;
     box-shadow: none;
     align-items: center;
@@ -1889,7 +2007,7 @@ a {
 
 .modal-newsletter .modal-content {
     font-size: var(--text-lg);
-    font-family: 'Poppins';
+    font-family: Muli, Arial, Helvetica, sans-serif;
 }
 
 .modal-header {
@@ -1901,7 +2019,7 @@ a {
 .modal-header .modal-title {
     cursor: default;
     font-size: var(--text-lg);
-    font-family: 'Poppins';
+    font-family: Muli, Arial, Helvetica, sans-serif;
     letter-spacing: .065rem;
 }
 
@@ -1934,7 +2052,7 @@ a {
     position: fixed;
     overflow: hidden;
     padding: .5rem .5rem;
-    font-family: 'Poppins';
+    font-family: Muli, Arial, Helvetica, sans-serif;
     transform: translateX(-50%);
     color: var(--nexa-body-color);
     border-bottom: none !important;
@@ -1947,7 +2065,7 @@ a {
 .finalize-order {
     font-size: var(--text-xl);
     padding: 1rem 1rem;
-    font-family: 'Poppins';
+    font-family: Muli, Arial, Helvetica, sans-serif;
     color: #FFFFFF;
     border: 1px solid #FFFFFF;
     background-color: #1A1A1A;
@@ -2081,6 +2199,30 @@ a {
 
 .category-card:hover .category-holographic {
     transform: translateX(100%) skewX(-20deg);
+}
+
+.left-0 {
+    left: 0 !important;
+}
+
+.right-0 {
+    right: 0 !important;
+}
+
+.border-top {
+    border-top: 1px solid #dddddd !important;
+}
+
+.border-left {
+    border-left: 1px solid #dddddd !important;
+}
+
+.border-right {
+    border-right: 1px solid #dddddd !important;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #dddddd !important;
 }
 
 /* Responsive Styles */

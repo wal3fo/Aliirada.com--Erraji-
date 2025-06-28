@@ -3,6 +3,7 @@
 namespace App\Livewire\Products;
 
 use Str;
+use Exception;
 use Livewire\Component;
 use Livewire\Attributes\Lazy;
 
@@ -14,6 +15,8 @@ class Carts extends Component
 {
     public $CartItems = [];
     public $CartCount = 0;
+    public $SubTotal = 0;
+    public $Total = 0;
 
     public $location = 'Marrakech';
     public $shippingCost = 0;
@@ -25,7 +28,16 @@ class Carts extends Component
         $this->CartItems = session()->get('CartItems', []);
         $this->CartCount = array_sum(array_column($this->CartItems, 'quantity'));
         $this->location = session()->get('selectedLocation', 'Marrakech');
+
         $this->currentLocation();
+
+        $this->SubTotal = collect($this->CartItems)->sum(function ($item) {
+            return $item['product']->PriceOf * $item['quantity'];
+        });
+
+        $this->Total = $this->SubTotal + $this->shippingCost;
+
+        sleep(1);
     }
 
     public function currentLocation()
@@ -42,7 +54,12 @@ class Carts extends Component
 
     public function changeLocation()
     {
-        $this->dispatch('togglePopup');
+        $this->dispatch('toggleLocationPopup');
+    }
+
+    public function toggleCheckout()
+    {
+        $this->dispatch('toggleCheckout');
     }
 
     public function removeFromCart($productId)
@@ -57,10 +74,30 @@ class Carts extends Component
         $this->refreshCart();
     }
 
+    public function selectSize($productId, $size)
+    {
+        $cart = session()->get('CartItems', []);
+        if (isset($cart[$productId])) {
+            $cart[$productId]['size'] = $size;
+            session()->put('CartItems', $cart);
+        }
+
+        $this->refreshCart();
+    }
+
     public function refreshCart()
     {
         $this->CartItems = session()->get('CartItems', []);
         $this->CartCount = array_sum(array_column($this->CartItems, 'quantity'));
+        $this->location = session()->get('selectedLocation', 'Marrakech');
+
+        $this->currentLocation();
+
+        $this->SubTotal = collect($this->CartItems)->sum(function ($item) {
+            return $item['product']->PriceOf * $item['quantity'];
+        });
+
+        $this->Total = $this->SubTotal + $this->shippingCost;
 
         $this->dispatch('refreshHeader');
     }
@@ -87,12 +124,22 @@ class Carts extends Component
         }
     }
 
-    public function showProductDetails($productId)
+    public function addToWishlist($productId)
     {
         $product = NexaProducts::find($productId);
+        if (!$product) {
+            return;
+        }
 
-        if ($product) {
-            $this->redirectRoute('products.details', ['productId' => $product->Id, 'productName' => Str::slug($product->Name)]);
+        try {
+            $wishlist = session()->get('WishListItems', []);
+
+            $wishlist[$productId] = [
+                'product' => $product
+            ];
+
+            session()->put('WishListItems', $wishlist);
+        } catch (Exception $e) {
         }
     }
 
@@ -103,6 +150,7 @@ class Carts extends Component
 
     public function render()
     {
+        $this->dispatch('initComponents');
         return view('livewire.products.carts');
     }
 }

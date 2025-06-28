@@ -1,4 +1,11 @@
 <div>
+    <!-- Category Nav -->
+    <nav class="categories d-none">
+        @foreach ($Categories as $Index => $Category)
+            <a href="#">{{ $Category }}</a>
+        @endforeach
+    </nav>
+
     <!-- Filter & Sort -->
     <div class="filter-bar justify-content-center">
         <button class="filter-by-advanced tracking-wide d-none">
@@ -6,19 +13,14 @@
             <span class="filter-titulo">FILTER</span>
             <small class="text-muted tracking-wide">({{ $Products->total() }} Items)</small>
         </button>
-        <span class="filter-bar-title">{{ __('messages.products.allproducts') }}</span>
+
+        <span class="filter-bar-title">{{ __('messages.header.categories.bestsales') }}</span>
+
         <button class="filter-by-popularity tracking-wide d-none">
             <i class="bi bi-funnel"></i>
             <span class="filter-titulo">SORTED BY POPULARITY</span>
         </button>
     </div>
-    
-    <!-- Category Nav -->
-    <nav class="categories d-none">
-        @foreach ($Categories as $item)
-            <a href="{{ route('categories', ['categoryId' => $item->Id, 'categoryName' => Str::slug($item->Name)]) }}">{{ $item->Name }}</a>
-        @endforeach
-    </nav>
 
     <div class="main-container">
         <!-- Product Grid -->

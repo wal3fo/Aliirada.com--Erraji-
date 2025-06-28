@@ -51,7 +51,7 @@
             $('[data-bs-toggle="tooltip"]').tooltip();
 
             const initComponents = function () {
-                $('select').each(function () {
+                $('select').not('.select-size').each(function () {
                     if (!this.tomselect) {
                         new TomSelect(this, {
                             searchField: false,
@@ -70,7 +70,7 @@
                 setTimeout(initComponents, 5);
             });
 
-            initComponents();
+            setTimeout(initComponents, 5);
         });
     </script>
 </body>

@@ -5,14 +5,14 @@ namespace App\Livewire\Products;
 use Str;
 use Exception;
 use Livewire\Component;
-use Livewire\WithPagination;
 use Livewire\Attributes\Lazy;
 
 use App\Models\NexaProducts;
+use Livewire\WithPagination;
 use App\Models\NexaCategories;
 
 #[Lazy]
-class NewIn extends Component
+class BestSales extends Component
 {
     use WithPagination;
 
@@ -30,6 +30,7 @@ class NewIn extends Component
     {
         $this->perPage += 4;
     }
+
     public function selectSize($productId, $size)
     {
         $this->selectedSizes[$productId] = $size;
@@ -83,12 +84,11 @@ class NewIn extends Component
 
     public function render()
     {
-        $Products = NexaProducts::orderByDesc('TimeOf')->paginate($this->perPage);
-
+        $Products = NexaProducts::orderByDesc('Popularity')->paginate($this->perPage);
         $Categories = NexaCategories::whereIn('Id', $Products->pluck('Category')->unique())
-            ->get();
+            ->pluck('Name', 'Id');
 
-        return view('livewire.products.new-in', [
+        return view('livewire.products.best-sales', [
             'Products' => $Products,
             'Categories' => $Categories,
         ]);

@@ -3,7 +3,7 @@
 namespace App\Livewire\Products;
 
 use Str;
-
+use Exception;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\Lazy;
@@ -17,42 +17,36 @@ class Items extends Component
     use WithPagination;
 
     public $perPage = 8;
-    public $quantities = [];
+    public $selectedSizes = [];
     public $categories;
 
     protected $updatesQueryString = ['page'];
 
+    public function mount()
+    {
+        sleep(1);
+    }
+
     public function loadMore()
     {
-        $this->placeholder();
         $this->perPage += 4;
     }
 
-    public function incrementQuantity($productId)
+    public function selectSize($productId, $size)
     {
-        if (isset($this->quantities[$productId])) {
-            $this->quantities[$productId]++;
-        } else {
-            $this->quantities[$productId] = 2;
-        }
-    }
-
-    public function decrementQuantity($productId)
-    {
-        if (isset($this->quantities[$productId]) && $this->quantities[$productId] > 1) {
-            $this->quantities[$productId]--;
-        }
+        $this->selectedSizes[$productId] = $size;
     }
 
     public function addToCart($productId)
     {
         $product = NexaProducts::find($productId);
         $cart = session()->get('CartItems', []);
-        $quantity = $this->quantities[$productId] ?? 1;
+        $selectedSize = $this->selectedSizes[$productId] ?? null;
 
         $cart[$productId] = [
             'product' => $product,
-            'quantity' => $quantity,
+            'quantity' => 1,
+            'size' => $selectedSize,
         ];
 
         session()->put('CartItems', $cart);
@@ -60,12 +54,22 @@ class Items extends Component
         $this->dispatch('refreshHeader');
     }
 
-    public function showProductDetails($productId)
+    public function addToWishlist($productId)
     {
         $product = NexaProducts::find($productId);
+        if (!$product) {
+            return;
+        }
 
-        if ($product) {
-            $this->redirectRoute('products.details', ['productId' => $product->Id, 'productName' => Str::slug($product->Name)]);
+        try {
+            $wishlist = session()->get('WishListItems', []);
+
+            $wishlist[$productId] = [
+                'product' => $product
+            ];
+
+            session()->put('WishListItems', $wishlist);
+        } catch (Exception $e) {
         }
     }
 
@@ -81,14 +85,7 @@ class Items extends Component
 
     public function render()
     {
-        $Products = NexaProducts::paginate($this->perPage);
-
-        // Initialize quantities for each product if not already set
-        foreach ($Products as $product) {
-            if (!isset($this->quantities[$product->Id])) {
-                $this->quantities[$product->Id] = 1;
-            }
-        }
+        $Products = NexaProducts::orderByDesc('TimeOf')->paginate($this->perPage);
 
         $Categories = NexaCategories::whereIn('Id', $Products->pluck('Category')->unique())
             ->get();

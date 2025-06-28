@@ -2,10 +2,13 @@
     <div class="page-body">
         <div class="container-fluid">
             <div class="row row-deck row-cards">
-                <div class="col-12 d-flex flex-column justify-content-center align-items-center" style="min-height: 300px;">
+                <div class="col-12 d-flex flex-column justify-content-center align-items-center"
+                    style="min-height: 300px;">
                     <div class="spinner-container">
-                        <svg class="spinner" width="60" height="60" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-                            <circle class="path" fill="none" stroke-width="4" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                        <svg class="spinner" width="60" height="60" viewBox="0 0 66 66"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <circle class="path" fill="none" stroke-width="4" stroke-linecap="round" cx="33" cy="33"
+                                r="30"></circle>
                         </svg>
                     </div>
                     <div class="loading-text mt-3">Loading...</div>
@@ -24,13 +27,11 @@
         }
 
         .loading-text {
-            color: #333;
-            /* Darker, more sophisticated text color */
+            color: #1A1A1A;
             font-size: 0.9rem;
-            font-weight: 400;
-            /* Slightly lighter font weight */
+            font-weight: 500;
             letter-spacing: 0.5px;
-            /* Added letter spacing for elegance */
+            text-transform: uppercase;
             opacity: 0;
             animation: fadeIn 0.4s ease-in 0.2s forwards;
         }
@@ -51,65 +52,49 @@
 
         .spinner .path {
             stroke-dasharray: 187;
-            /* Adjusted for new size */
             stroke-dashoffset: 0;
             transform-origin: center;
-            stroke: #A0A0A0;
-            /* Elegant muted grey/silver */
+            stroke: #1A1A1A;
             animation:
                 dash 1.4s ease-in-out infinite,
-                colors 5.6s ease-in-out infinite;
-            /* 1.4s * 4 colors */
-            filter: drop-shadow(0 0 1px rgba(160, 160, 160, 0.3));
-        }
-
-        @keyframes colors {
-            0% {
-                stroke: #A0A0A0;
-                /* Muted Silver */
-            }
-
-            25% {
-                stroke: #D4AF37;
-                /* Muted Gold */
-            }
-
-            50% {
-                stroke: #505050;
-                /* Charcoal Grey */
-            }
-
-            75% {
-                stroke: #BCA89F;
-                /* Dusty Rose / Nude */
-            }
-
-            100% {
-                stroke: #A0A0A0;
-                /* Back to Muted Silver */
-            }
+                stroke-opacity 2.8s ease-in-out infinite;
+            stroke-opacity: 1;
         }
 
         @keyframes dash {
             0% {
                 stroke-dashoffset: 187;
+                stroke-opacity: 1;
             }
 
             50% {
                 stroke-dashoffset: 46.75;
-                /* 187/4 */
                 transform: rotate(135deg);
+                stroke-opacity: 1;
             }
 
             100% {
                 stroke-dashoffset: 187;
                 transform: rotate(450deg);
+                stroke-opacity: 1;
+            }
+        }
+
+        @keyframes stroke-opacity {
+
+            0%,
+            100% {
+                stroke-opacity: 1;
+            }
+
+            50% {
+                stroke-opacity: 1;
             }
         }
 
         @keyframes fadeIn {
             from {
-                opacity: 0;
+                opacity: 1;
                 transform: translateY(8px);
             }
 

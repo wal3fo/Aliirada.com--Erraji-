@@ -9,7 +9,7 @@ use Livewire\Attributes\Lazy;
 #[Lazy]
 class Locations extends Component
 {
-    protected $listeners = ['togglePopup' => 'togglePopup'];
+    protected $listeners = ['toggleLocationPopup' => 'toggleLocations'];
 
     public $showPopup = false;
     public $search = '';
@@ -44,7 +44,7 @@ class Locations extends Component
         }
     }
 
-    public function togglePopup()
+    public function toggleLocations()
     {
         $this->showPopup = !$this->showPopup;
         if ($this->showPopup) {

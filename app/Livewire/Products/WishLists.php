@@ -12,11 +12,35 @@ class WishLists extends Component
 {
     public $WishListItems = [];
     public $WishListCount = 0;
+    public $selectedSizes = [];
 
     public function mount()
     {
         $this->WishListItems = session()->get('WishListItems', []);
         $this->WishListCount = count($this->WishListItems);
+
+        sleep(1);
+    }
+
+    public function selectSize($productId, $size)
+    {
+        $this->selectedSizes[$productId] = $size;
+    }
+
+    public function addToCart($productId)
+    {
+        $product = NexaProducts::find($productId);
+        $cart = session()->get('CartItems', []);
+
+        $cart[$productId] = [
+            'product' => $product,
+            'quantity' => 1,
+            'size' => $this->selectedSizes[$productId],
+        ];
+
+        session()->put('CartItems', $cart);
+
+        $this->dispatch('refreshHeader');
     }
 
     public function removeFromWishList($productId)

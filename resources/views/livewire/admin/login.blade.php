@@ -3,7 +3,10 @@
         <div class="col-md-8 col-lg-6">
             <div class="main-login card">
                 <div class="card-header">
-                    <h3 class="card-title text-center cursor-default bg-transparent">Admin Login</h3>
+                    <h3 class="card-title text-center">
+                        <span class="text-uppercase cursor-pointer">ADMIN</span>
+                        <span class="text-uppercase cursor-pointer">CPANEL</span>
+                    </h3>
                 </div>
 
                 <div class="card-body">

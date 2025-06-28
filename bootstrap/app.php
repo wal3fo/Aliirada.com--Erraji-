@@ -3,7 +3,6 @@
 use Illuminate\Foundation\Application;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\GuestMiddleware;
-use App\Http\Middleware\StaffMiddleware;
 
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -19,7 +18,6 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'authMiddleware' => AuthMiddleware::class,
             'guestMiddleware' => GuestMiddleware::class,
-            'staffMiddleware' => StaffMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

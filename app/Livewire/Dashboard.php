@@ -14,6 +14,8 @@ class Dashboard extends Component
     public function mount()
     {
         $this->categories = NexaCategories::orderBy('Id')->get();
+
+        sleep(1);
     }
 
     public function placeholder() {
