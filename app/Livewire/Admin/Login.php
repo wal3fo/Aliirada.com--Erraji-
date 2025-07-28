@@ -2,30 +2,40 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\NexaUsers;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 
 class Login extends Component
 {
-    public $email = '';
-    public $password = '';
+    public $userEmail = '';
+    public $userPassword = '';
     public $remember = false;
 
-    protected $rules = [
-        'email' => 'required|email',
-        'password' => 'required|min:6',
-    ];
-
-    public function login()
+    public function loginHandler()
     {
-        $this->validate();
+        try {
+            $existing = NexaUsers::where('Email', $this->userEmail)->first();
 
-        if (Auth::attempt(['email' => $this->email, 'password' => $this->password, 'is_admin' => true], $this->remember)) {
-            session()->regenerate();
-            return redirect()->intended(route('admin.dashboard'));
+            if (!$existing) {
+                return session()->flash('NexaError', 'Invalid credentials');
+            }
+
+            $password = md5($this->userPassword);
+
+            if ($existing->Password !== $password) {
+                return session()->flash('NexaError', 'Invalid credentials');
+            }
+
+            session()->put('UserLogged', true);
+            session()->put('UserId', $existing->Id);
+            session()->put('UserJob', $existing->Job);
+            session()->put('UserEmail', $existing->Email);
+
+            return redirect()->route('admin.lists');
+        } catch (\Exception $e) {
+            return session()->flash('NexaError', $e->getMessage());
         }
-
-        $this->addError('email', trans('auth.failed'));
     }
 
     public function render()

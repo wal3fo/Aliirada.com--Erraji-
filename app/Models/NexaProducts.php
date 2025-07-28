@@ -23,10 +23,12 @@ class NexaProducts extends Model
         'PriceOf',
         'Landing',
         'Popularity',
+        'Locked',
         'TimeOf',
     ];
 
     protected $casts = [
+        'Locked' => 'boolean',
         'TimeOf' => 'datetime',
     ];
 

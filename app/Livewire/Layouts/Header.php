@@ -3,6 +3,7 @@
 namespace App\Livewire\Layouts;
 
 use Livewire\Component;
+use App\Models\NexaProducts;
 
 class Header extends Component
 {
@@ -13,14 +14,28 @@ class Header extends Component
 
     protected $listeners = ['refreshHeader' => 'refreshCartHeader'];
 
-    public function refreshCartHeader() {
-        $this->CartItems = session()->get('CartItems', []);
-        $this->CartCount = array_sum(array_column($this->CartItems, 'quantity'));
+    public function refreshCartHeader()
+    {
+        $this->CartItems = collect(session()->get('CartItems', []))->filter(function ($item) {
+            return NexaProducts::find($item['product']->Id) !== null;
+        })->toArray();
+
+
+        $this->CartCount = collect($this->CartItems)->sum(function ($item) {
+            return $item['quantity'];
+        });
     }
 
-    public function mount() {
-        $this->CartItems = session()->get('CartItems', []);
-        $this->CartCount = array_sum(array_column($this->CartItems, 'quantity'));
+    public function mount()
+    {
+        $this->CartItems = collect(session()->get('CartItems', []))->filter(function ($item) {
+            return NexaProducts::find($item['product']->Id) !== null;
+        })->toArray();
+
+
+        $this->CartCount = collect($this->CartItems)->sum(function ($item) {
+            return $item['quantity'];
+        });
 
         $this->WishListItems = session()->get('WishListItems', []);
         $this->WishListCount = count($this->WishListItems);

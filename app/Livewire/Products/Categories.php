@@ -87,7 +87,8 @@ class Categories extends Component
 
     public function render()
     {
-        $Products = NexaProducts::orderByDesc('TimeOf')->where('Category', $this->categoryId)->paginate($this->perPage);
+        $Products = NexaProducts::where('Locked', 0)
+            ->orderByDesc('TimeOf')->where('Category', $this->categoryId)->paginate($this->perPage);
 
         return view('livewire.products.categories', [
             'Products' => $Products,

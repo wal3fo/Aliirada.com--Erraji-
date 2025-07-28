@@ -19,11 +19,12 @@ class Checkout extends Component
 
     public $CartItems = [];
     public $location = 'Marrakech';
-    public $SubTotal = 0;
     public $ShippingCost = 0;
+    public $SubTotal = 0;
     public $Total = 0;
 
     public $showCheckout = false;
+    public $showOrderConfirmation = false;
     protected $listeners = ["toggleCheckout" => "toggleCheckout", "locationSelected" => "updateLocation"];
 
     public function mount()
@@ -90,6 +91,14 @@ class Checkout extends Component
             ];
 
             \Mail::to($this->checkoutEmail)->queue(new OrderConfirmationMail('Order Received - Thank You!', $data));
+            $this->resetFields();
+            session()->forget('CartItems');
+            
+            $this->CartItems = [];
+            $this->SubTotal = 0;
+            $this->Total = 0;
+            
+            $this->showOrderConfirmation = true;
         } catch (Exception $e) {
             \Log::error($e->getMessage());
         } finally {

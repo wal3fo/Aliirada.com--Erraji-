@@ -10,7 +10,7 @@ class AuthMiddleware
     public function handle($request, Closure $next)
     {
         if (!session('UserLogged')) {
-            return redirect()->route('sessions.signin');
+            return redirect()->route('admin.login');
         }
 
         $language = session('Nexalang', 'en');

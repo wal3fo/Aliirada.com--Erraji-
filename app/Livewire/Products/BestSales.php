@@ -84,7 +84,8 @@ class BestSales extends Component
 
     public function render()
     {
-        $Products = NexaProducts::orderByDesc('Popularity')->paginate($this->perPage);
+        $Products = NexaProducts::where('Locked', 0)
+            ->orderByDesc('Popularity')->paginate($this->perPage);
         $Categories = NexaCategories::whereIn('Id', $Products->pluck('Category')->unique())
             ->pluck('Name', 'Id');
 

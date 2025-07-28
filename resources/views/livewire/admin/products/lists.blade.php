@@ -4,7 +4,7 @@
         <span class="filter-bar-title">
             [Management] Products List ({{ $Products->count() }})
         </span>
-        <a wire:navigate href="{{ route('admin.products.create') }}" class="btn btn-light btn-sm">Add Product</a>
+        <a wire:navigate href="{{ route('admin.create') }}" class="btn btn-light btn-sm">Add Product</a>
     </div>
 
     <div class="main-container">
@@ -17,6 +17,13 @@
                         </div>
                         <div class="product-info">
                             <div class="product-name" wire:click="showProductDetails({{ $Product->Id }})">
+                                <span class="badge bg-{{ $Product->Locked ? 'danger' : 'success' }} rounded">
+                                    @if($Product->Locked)
+                                        <span class="bi bi-lock-fill fs-6"></span>
+                                    @else
+                                        <span class="bi bi-unlock-fill fs-6"></span>
+                                    @endif
+                                </span>
                                 {{ $Product->Name }}
                             </div>
                         </div>
@@ -28,10 +35,10 @@
                                 </span>
                             </div>
 
-                            <div class="input-group w-auto overflow-hidden">
-                                <button type="button" class="btn btn-dark btn-sm rounded-end-0">Edit</button>
-                                <button type="button" class="btn btn-danger btn-sm rounded-start-0">Delete</button>
-                            </div>
+                            <a type="button" class="btn btn-dark btn-sm" wire:navigate
+                                href="{{ route('admin.edit', ['productId' => $Product->Id, 'productName' => Str::slug($Product->Name)]) }}">
+                                Edit
+                            </a>
                         </div>
 
                     </div>

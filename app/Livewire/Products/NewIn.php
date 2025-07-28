@@ -83,7 +83,8 @@ class NewIn extends Component
 
     public function render()
     {
-        $Products = NexaProducts::orderByDesc('TimeOf')->paginate($this->perPage);
+        $Products = NexaProducts::where('Locked', 0)
+            ->orderByDesc('TimeOf')->paginate($this->perPage);
 
         $Categories = NexaCategories::whereIn('Id', $Products->pluck('Category')->unique())
             ->get();

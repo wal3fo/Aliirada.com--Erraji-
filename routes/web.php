@@ -11,6 +11,7 @@ use App\Livewire\Products\WishLists;
 use App\Livewire\Products\Categories;
 
 use App\Livewire\Admin\Login;
+use App\Livewire\Admin\Products\Edit;
 use App\Livewire\Admin\Products\Lists;
 use App\Livewire\Admin\Products\Create;
 
@@ -29,8 +30,11 @@ Route::middleware(['guestMiddleware'])->group(function () {
 
     Route::get('policies/sales', Sales::class)->name('policies.sales');
 
-    Route::get('admin', Login::class)->name('admin');
-    Route::get('admin/login', Login::class)->name('admin.login');
-    Route::get('admin/products/lists', Lists::class)->name('admin.products.lists');
-    Route::get('admin/products/create', Create::class)->name('admin.products.create');
+    Route::get('admin', Login::class)->name('admin.login');
+});
+
+Route::middleware(['authMiddleware'])->group(function () {
+    Route::get('admin/products', Lists::class)->name('admin.lists');
+    Route::get('admin/create', Create::class)->name('admin.create');
+    Route::get('admin/edit/{productId}-{productName}', Edit::class)->name('admin.edit');
 });

@@ -13,7 +13,6 @@ class NexaVariants extends Model
     protected $fillable = [
         'Name',
         'Type',
-        'NLong',
         'ProductId',
     ];
 

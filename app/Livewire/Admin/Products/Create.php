@@ -4,11 +4,12 @@ namespace App\Livewire\Admin\Products;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
+
 use App\Models\NexaProducts;
-use App\Models\NexaCategories;
 use App\Models\NexaPictures;
 use App\Models\NexaVariants;
-use Illuminate\Support\Facades\Storage;
+use App\Models\NexaCategories;
+
 use Illuminate\Support\Facades\File;
 
 class Create extends Component
@@ -46,7 +47,6 @@ class Create extends Component
     {
         $this->validate();
 
-        // Create the product
         $product = NexaProducts::create([
             'Name' => $this->name,
             'Description' => nl2br($this->description),
@@ -57,7 +57,6 @@ class Create extends Component
             'TimeOf' => now(),
         ]);
 
-        // Save sizes
         if (!empty($this->sizeOf)) {
             foreach ($this->sizeOf as $size) {
                 NexaVariants::create([
@@ -68,7 +67,6 @@ class Create extends Component
             }
         }
 
-        // Upload gallery images if any
         if (!empty($this->gallery)) {
             foreach ($this->gallery as $image) {
                 NexaPictures::create([
@@ -79,13 +77,8 @@ class Create extends Component
             }
         }
 
-        // Reset form
         $this->reset();
-        $this->redirect(route('admin.products.lists'));
-        
-        // Emit success event
-        $this->dispatch('productCreated');
-        $this->dispatch('closeModal');
+        $this->redirect(route('admin.lists'));
     }
 
     private function uploadImage($image)
@@ -93,18 +86,14 @@ class Create extends Component
         $filename = time() . '_' . $image->getClientOriginalName();
         $targetPath = public_path('assets/illustrations/products');
         
-        // Ensure the directory exists
         if (!File::exists($targetPath)) {
             File::makeDirectory($targetPath, 0755, true);
         }
 
-        // Get the temporary file path
         $tempPath = $image->getRealPath();
         
-        // Copy the file instead of moving it
         File::copy($tempPath, $targetPath . '/' . $filename);
         
-        // Return just the filename
         return $filename;
     }
 

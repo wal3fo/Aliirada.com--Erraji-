@@ -9,12 +9,12 @@ class GuestMiddleware
 {
     public function handle($request, Closure $next)
     {
-        if (session('UserLogged')) {
-            return redirect()->route('dashboard');
-        }
-
         $language = session('Nexalang', 'en');
         App::setLocale($language);
+
+        if (session('UserLogged') && $request->route()->getName() === 'admin.login') {
+            return redirect()->route('admin.lists');
+        }
 
         return $next($request);
     }

@@ -6,7 +6,7 @@
     </div>
 
     <div class="main-container">
-        <form wire:submit="createProduct" class="product-form">
+        <form wire:submit="updateProduct" class="product-form">
             <div class="row">
                 <!-- Basic Information -->
                 <div class="col-md-8">
@@ -66,15 +66,60 @@
                                 <!-- Form Actions -->
                                 <div class="col-12 col-md-12 d-flex justify-content-end">
                                     <button type="submit" class="btn btn-dark" wire:loading.attr="disabled">
-                                        <span wire:loading.remove wire:target="createProduct">Create Product</span>
-                                        <span wire:loading wire:target="createProduct">
+                                        <span wire:loading.remove wire:target="updateProduct">Update Product</span>
+                                        <span wire:loading wire:target="updateProduct">
                                             <div class="spinner-border spinner-border-sm" role="status">
                                                 <span class="visually-hidden">Loading...</span>
                                             </div>
-                                            Creating...
+                                            Updating...
+                                        </span>
+                                    </button>
+
+                                    <button type="button" class="btn btn-{{ $locked ? 'success' : 'warning' }} ms-2"
+                                        wire:loading.attr="disabled" wire:click="toggleLocked">
+                                        <span wire:loading.remove
+                                            wire:target="toggleLocked">{{ $locked ? 'Enable' : 'Disable' }}</span>
+                                        <span wire:loading wire:target="toggleLocked">
+                                            <div class="spinner-border spinner-border-sm" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                            Toggling...
+                                        </span>
+                                    </button>
+
+                                    <button type="button" class="btn btn-danger ms-2" wire:loading.attr="disabled"
+                                        wire:click="toggleDeletion">
+                                        <span wire:loading.remove wire:target="toggleDeletion">Delete</span>
+                                        <span wire:loading wire:target="toggleDeletion">
+                                            <div class="spinner-border spinner-border-sm" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                            Toggling deletion...
                                         </span>
                                     </button>
                                 </div>
+
+                                @if($showDeletion)
+                                    <div class="col-12 col-md-12">
+                                        <div
+                                            class="alert alert-warning d-flex align-items-center justify-content-between m-0">
+                                            <div>
+                                                <strong>Warning!</strong> This product will be deleted.<br>
+                                                Are you sure you want to delete this product?
+                                            </div>
+                                            <button type="button" class="btn btn-success ms-auto"
+                                                wire:loading.attr="disabled" wire:click="deleteProduct">
+                                                <span wire:loading.remove wire:target="deleteProduct">Yes. Delete!</span>
+                                                <span wire:loading wire:target="deleteProduct">
+                                                    <div class="spinner-border spinner-border-sm" role="status">
+                                                        <span class="visually-hidden">Loading...</span>
+                                                    </div>
+                                                    Deleting...
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                @endif
                             </dov>
                         </div>
                     </div>
@@ -90,10 +135,31 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="landing" class="form-label">Landing Image</label>
+                                    <div class="row align-items-center justify-content-center g-4">
+                                        @if(isset($existingLanding) && $existingLanding)
+                                            <div class="col-12 col-md-4">
+                                                <div class="w-100">
+                                                    <img src="{{ asset('assets/illustrations/products/' . $existingLanding) }}"
+                                                        class="img-fluid rounded border border-2"
+                                                        alt="Current Landing Image"
+                                                        style="max-height: 160px; object-fit: cover;">
+                                                </div>
+                                            </div>
+                                        @endif
 
-                                    <div class="row align-items-center">
                                         @if($landing)
-                                            <div class="col-12 col-md-12">
+                                            <div class="col-12 col-md-4">
+                                                <div class="text-center w-100">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"
+                                                        fill="#FFD3D3" class="bi bi-arrow-right-square-fill"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-md-4">
                                                 <div class="w-100">
                                                     <img src="{{ $landing->temporaryUrl() }}"
                                                         class="img-fluid rounded border border-2"
@@ -105,7 +171,7 @@
 
                                         <div class="col-12 col-md-12">
                                             <input type="file" class="form-control" id="landing" wire:model="landing"
-                                                accept="image/*" required>
+                                                accept="image/*">
                                             @error('landing') <span class="text-danger">{{ $message }}</span> @enderror
                                         </div>
                                     </div>
@@ -115,15 +181,31 @@
                                     <label for="gallery" class="form-label">Gallery Images</label>
 
                                     <div class="row align-items-center justify-content-center g-4">
-                                        @if($gallery)
+                                        @if(isset($existingGallery) && count($existingGallery))
                                             <div class="col-12 col-md-12">
                                                 <div class="row g-2">
-                                                    @foreach($gallery as $image)
+                                                    @foreach($existingGallery as $img)
                                                         <div class="col-4 col-md-3 col-lg-3">
                                                             <div class="w-100 h-100">
-                                                                <img src="{{ $image->temporaryUrl() }}" alt="Gallery Image"
-                                                                    class="img-fluid rounded border" style="object-fit: cover;">
+                                                                <img src="{{ asset('assets/illustrations/products/' . $img->Name) }}"
+                                                                    alt="Gallery Image" class="img-fluid rounded border"
+                                                                    style="object-fit: cover;">
                                                             </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @endif
+
+                                        @if($gallery)
+                                            <hr>
+                                            <div class="col-12 col-md-12">
+                                                <div class="row align-items-center justify-content-center g-4">
+                                                    @foreach($gallery as $image)
+                                                        <div class="col-4 col-md-3 col-lg-3"
+                                                            style="width: 80px; height: 80px; overflow: hidden;">
+                                                            <img src="{{ $image->temporaryUrl() }}" alt="Gallery preview"
+                                                                style="width: 100%; height: 100%; object-fit: cover;">
                                                         </div>
                                                     @endforeach
                                                 </div>
@@ -136,7 +218,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>

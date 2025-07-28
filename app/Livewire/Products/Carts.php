@@ -25,8 +25,14 @@ class Carts extends Component
 
     public function mount()
     {
-        $this->CartItems = session()->get('CartItems', []);
-        $this->CartCount = array_sum(array_column($this->CartItems, 'quantity'));
+        $this->CartItems = collect(session()->get('CartItems', []))->filter(function ($item) {
+            return NexaProducts::find($item['product']->Id) !== null;
+        })->toArray();
+
+        $this->CartCount = collect($this->CartItems)->sum(function ($item) {
+            return $item['quantity'];
+        });
+        
         $this->location = session()->get('selectedLocation', 'Marrakech');
 
         $this->currentLocation();
@@ -87,8 +93,14 @@ class Carts extends Component
 
     public function refreshCart()
     {
-        $this->CartItems = session()->get('CartItems', []);
-        $this->CartCount = array_sum(array_column($this->CartItems, 'quantity'));
+        $this->CartItems = collect(session()->get('CartItems', []))->filter(function ($item) {
+            return NexaProducts::find($item['product']->Id) !== null;
+        })->toArray();
+
+        $this->CartCount = collect($this->CartItems)->sum(function ($item) {
+            return $item['quantity'];
+        });
+
         $this->location = session()->get('selectedLocation', 'Marrakech');
 
         $this->currentLocation();
