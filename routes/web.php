@@ -1,8 +1,8 @@
 <?php
 
 use App\Livewire\Dashboard;
-use App\Livewire\policies\Sales;
-use App\Livewire\products\Carts;
+use App\Livewire\Policies\Sales;
+use App\Livewire\Products\Carts;
 use App\Livewire\Products\Items;
 use App\Livewire\Products\NewIn;
 use App\Livewire\Products\Details;

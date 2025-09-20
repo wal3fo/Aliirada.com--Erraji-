@@ -432,6 +432,10 @@ a {
     box-shadow: none !important;
 }
 
+html[lang=ar] .wire-mobile-navigations button {
+    padding-left: 0.5rem;
+    padding-right: 0;
+}
 
 .wire-mobile-navigations .dropdown-menu {
     right: 0;

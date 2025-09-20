@@ -5,13 +5,13 @@
  Source Server Type    : MySQL
  Source Server Version : 100432 (10.4.32-MariaDB)
  Source Host           : localhost:3306
- Source Schema         : allirada
+ Source Schema         : aliirada
 
  Target Server Type    : MySQL
  Target Server Version : 100432 (10.4.32-MariaDB)
  File Encoding         : 65001
 
- Date: 28/06/2025 05:48:41
+ Date: 29/08/2025 15:48:25
 */
 
 SET NAMES utf8mb4;
@@ -29,7 +29,7 @@ CREATE TABLE `nexa_categories`  (
   `Locked` tinyint(1) NOT NULL DEFAULT 0,
   `TimeOf` datetime NOT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of nexa_categories
@@ -51,13 +51,11 @@ CREATE TABLE `nexa_newsletter`  (
   `Locked` tinyint(1) NOT NULL DEFAULT 0,
   `TimeOf` datetime NOT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of nexa_newsletter
 -- ----------------------------
-INSERT INTO `nexa_newsletter` VALUES (1, 'dhoucam@outlook.com', 0, '2025-06-23 07:08:51');
-INSERT INTO `nexa_newsletter` VALUES (2, 'incengine@gmail.com', 0, '2025-06-23 07:09:11');
 
 -- ----------------------------
 -- Table structure for nexa_pictures
@@ -69,33 +67,30 @@ CREATE TABLE `nexa_pictures`  (
   `ProductId` int NOT NULL,
   `TimeOf` datetime NOT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 43 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 66 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of nexa_pictures
 -- ----------------------------
-INSERT INTO `nexa_pictures` VALUES (20, '1749833166_double_breasted_short_coat_1018-008758-0140_flatlay.jpg', 44, '2025-06-13 16:46:06');
-INSERT INTO `nexa_pictures` VALUES (21, '1749833166_double_breasted_short_coat_1018-008758-0140_curated.jpg', 44, '2025-06-13 16:46:06');
-INSERT INTO `nexa_pictures` VALUES (22, '1749833166_double_breatsed_short_coat_1018-008758-01409518.jpg', 44, '2025-06-13 16:46:06');
-INSERT INTO `nexa_pictures` VALUES (23, '1749833166_double_breatsed_short_coat_1018-008758-01409457.jpg', 44, '2025-06-13 16:46:06');
-INSERT INTO `nexa_pictures` VALUES (24, '1749833166_double_breatsed_short_coat_1018-008758-01409502.jpg', 44, '2025-06-13 16:46:06');
-INSERT INTO `nexa_pictures` VALUES (26, '1749855035_animal-limited-cow-hide-leather-jacket (1).jpeg', 45, '2025-06-13 22:50:35');
-INSERT INTO `nexa_pictures` VALUES (27, '1749855035_animal-limited-cow-hide-leather-jacket (2).jpeg', 45, '2025-06-13 22:50:35');
-INSERT INTO `nexa_pictures` VALUES (28, '1749855035_animal-limited-cow-hide-leather-jacket.jpeg', 45, '2025-06-13 22:50:35');
-INSERT INTO `nexa_pictures` VALUES (29, '1749855524_neutral-animal-wool-blend-trucker- (1).webp', 46, '2025-06-13 22:58:44');
-INSERT INTO `nexa_pictures` VALUES (30, '1749855524_neutral-animal-wool-blend-trucker- (2).webp', 46, '2025-06-13 22:58:44');
-INSERT INTO `nexa_pictures` VALUES (31, '1749855524_neutral-animal-wool-blend-trucker-.webp', 46, '2025-06-13 22:58:44');
-INSERT INTO `nexa_pictures` VALUES (32, '1750009403_flowy_maxi_dress_1812-001004-0169_1_campaign.jpg', 47, '2025-06-15 17:43:23');
-INSERT INTO `nexa_pictures` VALUES (33, '1750009403_flowy_maxi_dress_1812-001004-0169_3_campaign.jpg', 47, '2025-06-15 17:43:23');
-INSERT INTO `nexa_pictures` VALUES (34, '1750009403_flowy_maxi_dress_1812-001004-0169_5_campaign.jpg', 47, '2025-06-15 17:43:23');
-INSERT INTO `nexa_pictures` VALUES (35, '1750009403_flowy_maxi_dress_1812-001004-0169_6_campaign.jpg', 47, '2025-06-15 17:43:23');
-INSERT INTO `nexa_pictures` VALUES (36, '1750009403_flowy_skirt_maxi_dress_1812-001004-0169_0007_flatlayf.jpg', 47, '2025-06-15 17:43:23');
-INSERT INTO `nexa_pictures` VALUES (37, '1750009403_flowy_skirt_maxi_dress_1812-001004-0169_0008_flatlayb.jpg', 47, '2025-06-15 17:43:23');
-INSERT INTO `nexa_pictures` VALUES (38, '1750010126_jersey_print_detail_oversized_t-shirt_1812-000945-0001_2_social.jpg', 48, '2025-06-15 17:55:26');
-INSERT INTO `nexa_pictures` VALUES (39, '1750010126_jersey_print_detail_oversized_t-shirt-1812-000945-0001_0017.jpg', 48, '2025-06-15 17:55:26');
-INSERT INTO `nexa_pictures` VALUES (40, '1750010126_jersey_print_detail_oversized_t-shirt-1812-000945-0001_0018.jpg', 48, '2025-06-15 17:55:26');
-INSERT INTO `nexa_pictures` VALUES (41, '1750010126_jersey_print_detail_oversized_t-shirt-1812-000945-0001_0019.jpg', 48, '2025-06-15 17:55:26');
-INSERT INTO `nexa_pictures` VALUES (42, '1750010126_jersey_print_detail_oversized_t-shirt-1812-000945-0001_0020_studio.jpg', 48, '2025-06-15 17:55:26');
+INSERT INTO `nexa_pictures` VALUES (47, '1751621296_neutral-animal-wool-blend-trucker- (1).webp', 50, '2025-07-04 09:28:16');
+INSERT INTO `nexa_pictures` VALUES (48, '1751621296_neutral-animal-wool-blend-trucker- (2).webp', 50, '2025-07-04 09:28:16');
+INSERT INTO `nexa_pictures` VALUES (49, '1751621296_neutral-animal-wool-blend-trucker-.webp', 50, '2025-07-04 09:28:16');
+INSERT INTO `nexa_pictures` VALUES (50, '1752526462_jersey_print_detail_oversized_t-shirt_1812-000945-0001_2_social.jpg', 51, '2025-07-14 20:54:22');
+INSERT INTO `nexa_pictures` VALUES (51, '1752526462_jersey_print_detail_oversized_t-shirt-1812-000945-0001_0017.jpg', 51, '2025-07-14 20:54:22');
+INSERT INTO `nexa_pictures` VALUES (52, '1752526462_jersey_print_detail_oversized_t-shirt-1812-000945-0001_0018.jpg', 51, '2025-07-14 20:54:22');
+INSERT INTO `nexa_pictures` VALUES (53, '1752526462_jersey_print_detail_oversized_t-shirt-1812-000945-0001_0019.jpg', 51, '2025-07-14 20:54:22');
+INSERT INTO `nexa_pictures` VALUES (54, '1752526462_jersey_print_detail_oversized_t-shirt-1812-000945-0001_0020_studio.jpg', 51, '2025-07-14 20:54:22');
+INSERT INTO `nexa_pictures` VALUES (55, '1752528060_jersey_print_detail_oversized_t-shirt_1812-000945-0001_2_social.jpg', 52, '2025-07-14 21:21:00');
+INSERT INTO `nexa_pictures` VALUES (56, '1752528060_jersey_print_detail_oversized_t-shirt-1812-000945-0001_0017.jpg', 52, '2025-07-14 21:21:00');
+INSERT INTO `nexa_pictures` VALUES (57, '1752528060_jersey_print_detail_oversized_t-shirt-1812-000945-0001_0018.jpg', 52, '2025-07-14 21:21:00');
+INSERT INTO `nexa_pictures` VALUES (58, '1752528060_jersey_print_detail_oversized_t-shirt-1812-000945-0001_0019.jpg', 52, '2025-07-14 21:21:00');
+INSERT INTO `nexa_pictures` VALUES (59, '1752528060_jersey_print_detail_oversized_t-shirt-1812-000945-0001_0020_studio.jpg', 52, '2025-07-14 21:21:00');
+INSERT INTO `nexa_pictures` VALUES (60, '1752529726_flowy_maxi_dress_1812-001004-0169_1_campaign.jpg', 53, '2025-07-14 21:48:46');
+INSERT INTO `nexa_pictures` VALUES (61, '1752529726_flowy_maxi_dress_1812-001004-0169_3_campaign.jpg', 53, '2025-07-14 21:48:46');
+INSERT INTO `nexa_pictures` VALUES (62, '1752529726_flowy_maxi_dress_1812-001004-0169_5_campaign.jpg', 53, '2025-07-14 21:48:46');
+INSERT INTO `nexa_pictures` VALUES (63, '1752529726_flowy_maxi_dress_1812-001004-0169_6_campaign.jpg', 53, '2025-07-14 21:48:46');
+INSERT INTO `nexa_pictures` VALUES (64, '1752529726_flowy_skirt_maxi_dress_1812-001004-0169_0007_flatlayf.jpg', 53, '2025-07-14 21:48:46');
+INSERT INTO `nexa_pictures` VALUES (65, '1752529726_flowy_skirt_maxi_dress_1812-001004-0169_0008_flatlayb.jpg', 53, '2025-07-14 21:48:46');
 
 -- ----------------------------
 -- Table structure for nexa_products
@@ -110,18 +105,17 @@ CREATE TABLE `nexa_products`  (
   `PriceOf` decimal(10, 2) NOT NULL,
   `Landing` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `Popularity` int NOT NULL DEFAULT 0,
+  `Locked` tinyint(1) NOT NULL DEFAULT 1,
   `TimeOf` datetime NOT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 49 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 54 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of nexa_products
 -- ----------------------------
-INSERT INTO `nexa_products` VALUES (44, 'Double Breasted Short Coat', 'This jacket features a high neck. It has double button closures and side pockets. The jacket has a lining. This jacket comes in beige.', 1, 50, 700.00, '1749833166_double_breatsed_short_coat_landing.jpg', 0, '2025-06-13 16:46:06');
-INSERT INTO `nexa_products` VALUES (45, 'Limited Cow Hide Leather Jacket', 'Turn heads in cowprint. Feel edgy in this jacket, made from a high quality cow hide leather material with a limited design. Team with your go-to jeans and a pair of loafers to set trends on your off-duty days.<br />\n<br />\nLimited Cow Hide Leather Jacket<br />\nHigh Quality Cow Hide Leather Material<br />\nLimited Design<br />\nModel wears a size S (US size 6/UK size 10).<br />\n<br />\nFabric: 100% Real Leather.<br />\n<br />\nSKU: #BGG24077<br />\n*Pricing Policy<br />\nOur percentage off promotions, discounts, or sale markdowns are customarily based on our own opinion of the value of this product, which is not intended to reflect a former price at which this product has sold in the recent past. This amount represents our opinion of the full retail value of this product today based on our own assessment after considering a number of factors. That’s why before checking out with your new Nasty, it’s important to acknowledge that you understand this.', 1, 50, 1199.00, '1749855035_landing.webp', 0, '2025-06-13 22:50:35');
-INSERT INTO `nexa_products` VALUES (46, 'Animal Wool Blend Trucker', 'Hear her roar. Feel fierce in this trucker, made from a high quality wool blend material with an animal print design, single breasted detail and zip up and Button fastening. Take a walk on the wild side in this. Style with wide leg pants, a white tee and fresh sneakers for a look that can\'t be tamed.<br />\n<br />\nAnimal Wool Blend Trucker<br />\nHigh Quality Material<br />\nAnimal Print Design<br />\nZip Up and Button Fastening<br />\n100% Polyester excluding trims<br />\n<br />\nSKU: #BGG23593<br />\n*Pricing Policy<br />\nOur percentage off promotions, discounts, or sale markdowns are customarily based on our own opinion of the value of this product, which is not intended to reflect a former price at which this product has sold in the recent past. This amount represents our opinion of the full retail value of this product today based on our own assessment after considering a number of factors. That’s why before checking out with your new Nasty, it’s important to acknowledge that you understand this.', 1, 20, 1399.00, '1749855524_female-neutral-animal-wool-blend-trucker-.webp', 0, '2025-06-13 22:58:44');
-INSERT INTO `nexa_products` VALUES (47, 'Flowy Maxi Dress', 'This maxi dress features a flowy fit. It has a high neckline and a loop closure at the back of the neck. The maxi dress has a concealed side zipper and a pleated skirt. This maxi dress comes in multicolor.', 2, 50, 1099.00, '1750009403_flowy_maxi_dress_1812-001004-0169_2_campaign-copy.jpg', 0, '2025-06-15 17:43:23');
-INSERT INTO `nexa_products` VALUES (48, 'Jersey Print Detail Oversized T-shirt', 'This t-shirt features an oversized fit. It has a round neckline and a print at the back. This t-shirt comes in off-white.', 2, 100, 450.00, '1750010126_jersey_print_detail_oversized_t-shirt_1812-000945-0001_1_campaign.jpg', 0, '2025-06-15 17:55:26');
+INSERT INTO `nexa_products` VALUES (50, 'Animal Wool Blend Trucker', 'Hear her roar. Feel fierce in this trucker, made from a high quality wool blend material with an animal print design, single breasted detail and zip up and Button fastening. Take a walk on the wild side in this. Style with wide leg pants, a white tee and fresh sneakers for a look that can\'t be tamed.<br />\n<br />\nAnimal Wool Blend Trucker<br />\nHigh Quality Material<br />\nAnimal Print Design<br />\nZip Up and Button Fastening<br />\n100% Polyester excluding trims<br />\n<br />\nSKU: #BGG23593<br />\n*Pricing Policy<br />\nOur percentage off promotions, discounts, or sale markdowns are customarily based on our own opinion of the value of this product, which is not intended to reflect a former price at which this product has sold in the recent past. This amount represents our opinion of the full retail value of this product today based on our own assessment after considering a number of factors. That’s why before checking out with your new Nasty, it’s important to acknowledge that you understand this.', 1, 100, 1299.00, '1751621296_female-neutral-animal-wool-blend-trucker-.webp', 0, 0, '2025-07-04 09:28:16');
+INSERT INTO `nexa_products` VALUES (52, 'Jersey Print Detail Oversized T-shirt', 'rtrvtrvttrvrrtvtr<br />\n<br />\nvrtvtrvrtvtr<br />\nvrtvt<br />\n<br />\nvrtvrtr', 2, 100, 999.00, '1752528060_jersey_print_detail_oversized_t-shirt_1812-000945-0001_1_campaign.jpg', 0, 0, '2025-07-14 21:21:00');
+INSERT INTO `nexa_products` VALUES (53, 'Smock Detail Anglaise Maxi Dress', 'This maxi dress features a stretchy smocking. It has a flowy skirt with embroidery with a floral print and a lining. This maxi dress comes in light-blue.', 3, 50, 850.00, '1752529726_flowy_maxi_dress_1812-001004-0169_2_campaign-copy.jpg', 0, 0, '2025-07-14 21:48:46');
 
 -- ----------------------------
 -- Table structure for nexa_shippings
@@ -132,7 +126,7 @@ CREATE TABLE `nexa_shippings`  (
   `City` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `Cost` decimal(10, 2) NULL DEFAULT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 514 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 514 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of nexa_shippings
@@ -619,12 +613,12 @@ CREATE TABLE `nexa_users`  (
   `Registration` datetime NOT NULL,
   `TimeOf` datetime NOT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of nexa_users
 -- ----------------------------
-INSERT INTO `nexa_users` VALUES (1, 'HOUSSAM JABER', 'dhoucam@outlook.com', 'benjaber', 'Administrator', -1, '2025-06-13 16:30:02', '2025-06-13 16:30:05');
+INSERT INTO `nexa_users` VALUES (1, 'HOUSSAM JABER', 'dhoucam@outlook.com', '7db3ed8a3f82c6b1e4db03b0354029ee', 'Administrator', -1, '2025-06-13 16:30:02', '2025-06-13 16:30:05');
 
 -- ----------------------------
 -- Table structure for nexa_variants
@@ -633,17 +627,27 @@ DROP TABLE IF EXISTS `nexa_variants`;
 CREATE TABLE `nexa_variants`  (
   `Id` int NOT NULL AUTO_INCREMENT,
   `Name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `NLong` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `Type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `ProductId` int NOT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = MyISAM AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 38 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of nexa_variants
 -- ----------------------------
-INSERT INTO `nexa_variants` VALUES (1, 'S', 'Small', 'Size', 48);
-INSERT INTO `nexa_variants` VALUES (2, 'M', 'Medium', 'Size', 48);
-INSERT INTO `nexa_variants` VALUES (3, 'L', 'Large', 'Size', 48);
+INSERT INTO `nexa_variants` VALUES (24, 'S', 'Size', 50);
+INSERT INTO `nexa_variants` VALUES (25, 'M', 'Size', 50);
+INSERT INTO `nexa_variants` VALUES (26, 'L', 'Size', 50);
+INSERT INTO `nexa_variants` VALUES (27, 'M', 'Size', 51);
+INSERT INTO `nexa_variants` VALUES (28, 'L', 'Size', 51);
+INSERT INTO `nexa_variants` VALUES (29, 'XL', 'Size', 51);
+INSERT INTO `nexa_variants` VALUES (30, 'XXL', 'Size', 51);
+INSERT INTO `nexa_variants` VALUES (31, 'M', 'Size', 52);
+INSERT INTO `nexa_variants` VALUES (32, 'L', 'Size', 52);
+INSERT INTO `nexa_variants` VALUES (33, 'XL', 'Size', 52);
+INSERT INTO `nexa_variants` VALUES (34, 'XXL', 'Size', 52);
+INSERT INTO `nexa_variants` VALUES (35, 'S', 'Size', 53);
+INSERT INTO `nexa_variants` VALUES (36, 'M', 'Size', 53);
+INSERT INTO `nexa_variants` VALUES (37, 'L', 'Size', 53);
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -1,5 +1,5 @@
 <div class="wire-mobile-navigations">
-    <button class="btn bg-transparent ps-0 btn-sm" wire:click="toggleMobileNavigations" wire:click.away="closeMobileNavigations" href="#">
+    <button class="btn bg-transparent btn-sm" wire:click="toggleMobileNavigations" wire:click.away="closeMobileNavigations" href="#">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-list"
             viewBox="0 0 16 16">
             <path fill-rule="evenodd"

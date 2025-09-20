@@ -42,8 +42,6 @@ class Carts extends Component
         });
 
         $this->Total = $this->SubTotal + $this->shippingCost;
-
-        sleep(1);
     }
 
     public function currentLocation()
